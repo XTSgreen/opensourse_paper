@@ -58,10 +58,14 @@ def _rewrite_json(path: Path, root: Path, keys: set[str]) -> None:
 
 def _rewrite_csv(path: Path, root: Path) -> None:
     frame = pd.read_csv(path)
+    changed = False
     for column in frame.columns:
         if column in {"artifact", "log", "metrics", "path", "train_path", "test_input_path", "truth_path", "truth", "panel"}:
-            frame[column] = frame[column].map(lambda value: _portable(value, root))
-    frame.to_csv(path, index=False)
+            normalized = frame[column].map(lambda value: _portable(value, root))
+            changed = changed or not normalized.equals(frame[column])
+            frame[column] = normalized
+    if changed:
+        frame.to_csv(path, index=False)
 
 
 def main() -> int:
