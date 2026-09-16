@@ -1,0 +1,16 @@
+{
+  "method": "TIGON",
+  "method_version": "1ed92cfcc250415fc01b4d344a308b0680cc9635",
+  "official_components": [
+    "utility.UOT",
+    "utility.train_model"
+  ],
+  "input": "data/derived/gse140802_t2_t16.npz",
+  "initial_input": null,
+  "output": "results/B2_lineage_transition/tigon/gse140802_t2_t16_seed20260920.npz",
+  "iterations": 100,
+  "samples": 40,
+  "seed": 20260920,
+  "final_loss": 0.003771556308493018,
+  "runtime_seconds": 21.2225709
+}

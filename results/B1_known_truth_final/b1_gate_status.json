@@ -1,0 +1,45 @@
+{
+  "benchmark": "B1_known_truth",
+  "paired_runs": 90,
+  "bootstrap_replicates": 10000,
+  "G4_parameter_recovery": {
+    "pass": true,
+    "evidence": "equivalent-fit coefficient cosine and pure-column curvature paired CI lower bounds exceed zero"
+  },
+  "G5_direction_stability_B1_component": {
+    "pass": true,
+    "evidence": "equivalent-fit hard-minus-soft restart direction variance paired CI lower bound exceeds zero"
+  },
+  "descriptive_all_scenarios": [
+    {
+      "metric": "coefficient_cosine",
+      "mean_difference": 0.6691336562732131,
+      "worst_lower": 0.3098769897627247,
+      "worst_upper": 1.1781892314519193
+    },
+    {
+      "metric": "coefficient_sign_accuracy",
+      "mean_difference": 0.2990740740740741,
+      "worst_lower": 0.05555555555555556,
+      "worst_upper": 0.6166666666666667
+    },
+    {
+      "metric": "heldout_coupling_relative_frobenius",
+      "mean_difference": 0.02045890525051658,
+      "worst_lower": -0.10916408558897793,
+      "worst_upper": 0.16093833233194665
+    },
+    {
+      "metric": "pure_column_minimum_curvature",
+      "mean_difference": 0.2374944158075228,
+      "worst_lower": 0.1792142365294088,
+      "worst_upper": 0.28396423117138525
+    },
+    {
+      "metric": "restart_direction_variance",
+      "mean_difference": 0.11676403425233518,
+      "worst_lower": 0.07160877944614405,
+      "worst_upper": 0.2042973395561561
+    }
+  ]
+}

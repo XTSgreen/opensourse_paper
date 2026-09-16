@@ -1,0 +1,8 @@
+{
+  "method": "development-target-transfer",
+  "input": "data/derived/b3/train/gse239651_ispinesib_day98.npz",
+  "initial_input": "data/derived/b3/test_input/gse239651_ispinesib_day98.npz",
+  "output": "results/B3_prospective_composition/external_dynamics/development-target-transfer/gse239651_ispinesib_day98_seed20260916.npz",
+  "seed": 20260916,
+  "target_information_used": "training-panel target composition"
+}

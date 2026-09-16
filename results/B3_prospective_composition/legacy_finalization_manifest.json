@@ -1,0 +1,212 @@
+{
+  "status": "complete_model_and_metrics_report_finalized",
+  "model_refit_in_finalization": false,
+  "predictions_modified_in_finalization": false,
+  "decision_recomputed_from_existing_metrics": true,
+  "execution_protocol": {
+    "path": "config/protocol_v2.lock.yaml",
+    "sha256": "f01c45edf2100af4186b0e1e6f78db8a7eee40ead4e1ead0557e4a6c07d5c4fc"
+  },
+  "postprocessing_code": {
+    "path": "[external absolute path omitted]",
+    "sha256": "2335ab4abbbbd3c4543465cc48d6e8be96c8d7d14145bb4abf5ca7f0eb45e1ea"
+  },
+  "outputs": {
+    "development_outer_oof_metrics.csv": {
+      "path": "outputs/locked_primary_rerun/development_outer_oof_metrics.csv",
+      "sha256": "3c4104cda3b7e4d694e1d68a73211f1331182a4787192c20ffe3e2c12fc2b869",
+      "bytes": 12920
+    },
+    "external_e1_metrics.csv": {
+      "path": "outputs/locked_primary_rerun/external_e1_metrics.csv",
+      "sha256": "6c4312ba49538ae51ba9877da09b187c8d1d51a3e6629c9524f0ab3558f5a2dc",
+      "bytes": 12841
+    },
+    "development_outer_oof_predictions.parquet": {
+      "path": "outputs/locked_primary_rerun/development_outer_oof_predictions.parquet",
+      "sha256": "f0e4117d8e9aea4007465fbfd1c8f894c78a2f3762a2a2981e53689f27e7c38e",
+      "bytes": 7644649
+    },
+    "external_e1_predictions.parquet": {
+      "path": "outputs/locked_primary_rerun/external_e1_predictions.parquet",
+      "sha256": "37881cfe56540b831c1b99235e497ca6b8e3fb33fda9b0e2c54a45c2bede85f8",
+      "bytes": 22385419
+    },
+    "method_ranking.csv": {
+      "path": "outputs/locked_primary_rerun/method_ranking.csv",
+      "sha256": "328a9d63b0e76c3c43b1cbb1751177ee63c7280c4ec3bc5baf903227e17d8af9",
+      "bytes": 6988
+    },
+    "paired_clone_bootstrap_brier.csv": {
+      "path": "outputs/locked_primary_rerun/paired_clone_bootstrap_brier.csv",
+      "sha256": "6bffd6f9844e5e9473d95557c786c43744f3c33f51a23e1050d43ebc3379e6d5",
+      "bytes": 2237
+    },
+    "leakage_and_data_contract_audit.json": {
+      "path": "outputs/locked_primary_rerun/leakage_and_data_contract_audit.json",
+      "sha256": "ad19e6661a85f1429a6ecfb4b80f0b6f5785cf787bce5674a6305ba346fb7d1f",
+      "bytes": 5658
+    }
+  },
+  "decision": {
+    "development_oof": {
+      "available": true,
+      "candidate": {
+        "dataset_id": "GSE239651_expt1",
+        "partition": "development_outer_oof",
+        "method": "PERSIST-IOT",
+        "stratum": "all",
+        "n": 38010.0,
+        "prevalence": 0.1280452512496711,
+        "brier": 0.050092494660085,
+        "nll": 0.1989333684138744,
+        "ece": 0.0177687340890148,
+        "calibration_slope": 0.9101706808865192,
+        "calibration_intercept": -0.2071346521291967,
+        "auprc": 0.7806524464438694,
+        "auroc": 0.9070143777596332,
+        "top10_enrichment": 6.431066365317444,
+        "integrated_brier": 0.0498180156054049,
+        "joint_nll": 0.1989333684138744,
+        "state_n": 4867.0,
+        "state_cross_entropy": 1.0370164120742835,
+        "state_brier": 0.2851258100055829,
+        "state_total_variation": 0.3612926622644019,
+        "state_top1_agreement": 0.6443394288062462,
+        "abstention_rate": 0.9027624309392264
+      },
+      "best_brier_comparator": "extra_trees",
+      "best_auprc_comparator": "random_forest",
+      "relative_brier_improvement": -0.10635265669946486,
+      "absolute_auprc_improvement": -0.029170979777511596,
+      "relative_state_cross_entropy_improvement_vs_no_iot": 0.7862215372309455,
+      "checks": {
+        "brier_improvement": false,
+        "auprc_improvement": false,
+        "ece": true,
+        "calibration_slope": true,
+        "calibration_intercept": false,
+        "iot_state_ablation_gain": true
+      },
+      "passes_scoring_gates": false
+    },
+    "external_e1": {
+      "available": true,
+      "candidate": {
+        "dataset_id": "GSE239651_expt2",
+        "partition": "locked_external_e1",
+        "method": "PERSIST-IOT",
+        "stratum": "all",
+        "n": 109704.0,
+        "prevalence": 0.0662418872602639,
+        "brier": 0.0297555056253869,
+        "nll": 0.1153284924967649,
+        "ece": 0.0197735319435872,
+        "calibration_slope": 1.1441105773340705,
+        "calibration_intercept": -0.2036611487001081,
+        "auprc": 0.7155979268605477,
+        "auroc": 0.9445790387150514,
+        "top10_enrichment": 8.627572720490315,
+        "integrated_brier": 0.0292931049249711,
+        "joint_nll": 0.1153284924967649,
+        "state_n": 7267.0,
+        "state_cross_entropy": 0.9859026620053872,
+        "state_brier": 0.3592909630817728,
+        "state_total_variation": 0.4036905221094105,
+        "state_top1_agreement": 0.6819870648135407,
+        "abstention_rate": 0.9339130751841318
+      },
+      "best_brier_comparator": "PERSIST-no-IOT",
+      "best_auprc_comparator": "hist_gradient_boosting",
+      "relative_brier_improvement": 0.03877090635176362,
+      "absolute_auprc_improvement": -0.01715150104603369,
+      "relative_state_cross_entropy_improvement_vs_no_iot": 0.784881186149541,
+      "checks": {
+        "brier_improvement": false,
+        "auprc_improvement": false,
+        "ece": true,
+        "calibration_slope": true,
+        "calibration_intercept": false,
+        "iot_state_ablation_gain": true
+      },
+      "passes_scoring_gates": false
+    },
+    "external_e2_status": "FAIL_PREPERFORMANCE",
+    "strong_sota_release": false,
+    "reason": "\u5168\u90e8\u9884\u6ce8\u518c E2 \u5019\u9009\u5747\u5728\u6027\u80fd\u8bfb\u53d6\u524d\u672a\u901a\u8fc7\u516c\u5f00\u6570\u636e\u8d44\u683c\u5408\u540c\uff1b\u5f53\u524d\u7ed3\u679c\u4e0d\u80fd\u53d1\u5e03\u4e3a\u5f3a SOTA\u3002",
+    "current_e1_evidence_status": "FAIL"
+  },
+  "external_candidate_audits": {
+    "GSE216521": {
+      "dataset_id": "GSE216521",
+      "role": "locked_external_E2_candidate",
+      "public_only": true,
+      "status": "FAIL_PREPERFORMANCE",
+      "source": {
+        "geo_accession": "GSE216521",
+        "relevant_subseries": "GSE216518",
+        "relevant_system": "iEP reprogramming CellTag-multi",
+        "source_timepoint": "day3",
+        "future_timepoints": [
+          12,
+          21
+        ],
+        "future_timepoint_count": 2,
+        "official_raw_supplement": "GSE216521_RAW.tar"
+      },
+      "eligibility": {
+        "minimum_source_lineages": 200,
+        "minimum_future_timepoints": 3,
+        "minimum_positive": 50,
+        "minimum_long_absent": 50,
+        "minimum_lineage_cell_connection_rate": 0.9,
+        "future_timepoint_pass": false,
+        "passes_all": false
+      },
+      "reason": "\u76f8\u5173 iEP \u8c31\u7cfb\u5b9e\u9a8c\u4ece day3 \u6e90\u7aef\u5230 day12\u3001day21 \u4e24\u4e2a\u540e\u7eed\u65f6\u70b9\uff0c\u5c11\u4e8e\u9884\u6ce8\u518c\u7684\u4e09\u4e2a\u540e\u7eed\u65f6\u70b9\u3002\u8be5\u5019\u9009\u5728\u4e0b\u8f7d\u548c\u6a21\u578b\u6027\u80fd\u8bfb\u53d6\u524d\u6392\u9664\u3002",
+      "model_performance_accessed": false
+    },
+    "GSE99915": {
+      "dataset_id": "GSE99915",
+      "role": "fallback_external_candidate",
+      "public_only": true,
+      "status": "FAIL_PREPERFORMANCE",
+      "source": {
+        "geo_accession": "GSE99915",
+        "author_asset": "morris-lab/BiddyetalWorkflow/input_data_for_network_construction/celltag_data.txt",
+        "download_manifest": "data/GSE99915/public_raw/download_manifest.json",
+        "cells_in_public_celltag_table": 30733,
+        "timepoints_in_public_metadata": 8,
+        "timepoints": [
+          0,
+          3,
+          6,
+          9,
+          12,
+          15,
+          21,
+          28
+        ],
+        "source_day0_cells": 2744,
+        "source_day0_nonnull_CellTagD0": 10,
+        "source_day0_unique_CellTagD0": 10,
+        "source_day0_max_clone_collision": 1
+      },
+      "eligibility": {
+        "minimum_source_lineages": 200,
+        "minimum_future_timepoints": 3,
+        "minimum_positive": 50,
+        "minimum_long_absent": 50,
+        "minimum_lineage_cell_connection_rate": 0.9,
+        "source_lineage_pass": false,
+        "future_timepoint_pass": true,
+        "positive_and_long_absent_not_scored": true,
+        "passes_all": false
+      },
+      "reason": "\u516c\u5f00 CellTagD0 \u8868\u5728 day0 \u6e90\u7aef\u53ea\u6709 10 \u4e2a\u53ef\u5b9a\u4e49\u7684\u6e90\u514b\u9686\u3002\u672a\u6765\u6807\u7b7e\u4e0d\u80fd\u53cd\u5411\u8865\u5efa\u6e90\u514b\u9686\uff0c\u56e0\u6b64\u8be5\u5019\u9009\u5728\u8868\u8fbe\u77e9\u9635\u4e0b\u8f7d\u548c\u6a21\u578b\u6027\u80fd\u8bfb\u53d6\u524d\u6392\u9664\u3002",
+      "target_future_used_for_clone_definition": false,
+      "model_performance_accessed": false
+    }
+  },
+  "serialization_fix": "numpy.bool_ converted to native bool before JSON encoding"
+}

@@ -1,0 +1,11 @@
+dataset,method,status,reason,velocity_layers,raw_kinetics
+GSE140802,scVelo,not_applicable,frozen public panel has no spliced/unspliced layers,False,False
+GSE140802,dynamo,not_applicable,frozen public panel has neither metabolic-label kinetics nor velocity layers,False,False
+GSE239651,scVelo,not_applicable,frozen public panel has no spliced/unspliced layers,False,False
+GSE239651,dynamo,not_applicable,frozen public panel has neither metabolic-label kinetics nor velocity layers,False,False
+GSE239651_expt1,scVelo,not_applicable,frozen public panel has no spliced/unspliced layers,False,False
+GSE239651_expt1,dynamo,not_applicable,frozen public panel has neither metabolic-label kinetics nor velocity layers,False,False
+GSE239651_expt2,scVelo,not_applicable,frozen public panel has no spliced/unspliced layers,False,False
+GSE239651_expt2,dynamo,not_applicable,frozen public panel has neither metabolic-label kinetics nor velocity layers,False,False
+macsGESTALT,scVelo,not_applicable,frozen public panel has no spliced/unspliced layers,False,False
+macsGESTALT,dynamo,not_applicable,frozen public panel has neither metabolic-label kinetics nor velocity layers,False,False

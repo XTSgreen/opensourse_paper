@@ -1,0 +1,16 @@
+{
+  "method": "MIOFlow",
+  "method_version": "0.1.14@36365403d0f23cc3ad1065781c7331bf81debf4e",
+  "input": "data/derived/b3/train/gse239651_ispinesib_day69.npz",
+  "initial_input": "data/derived/b3/test_input/gse239651_ispinesib_day69.npz",
+  "output": "results/B3_prospective_composition/external_dynamics/mioflow/gse239651_ispinesib_day69_seed20260918.npz",
+  "epochs": 50,
+  "hidden_dim": 32,
+  "seed": 20260918,
+  "device": "cpu",
+  "generated_shape": [
+    1959,
+    6
+  ],
+  "runtime_seconds": 6.674701099998856
+}

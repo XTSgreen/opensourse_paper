@@ -1,0 +1,21 @@
+{
+  "claim_scope": "predictive validity of a frozen learned direction on unseen cohorts and sites",
+  "excluded_claims": [
+    "known-truth coefficient recovery",
+    "independent confirmation of every coefficient sign",
+    "causal effect identification"
+  ],
+  "training_cohort": "GSE163558",
+  "validation_cohorts": [
+    "GSE183904",
+    "GSE246662"
+  ],
+  "independent_sites": 6,
+  "sites_with_positive_ci": 6,
+  "gate_pass": true,
+  "input_sha256": {
+    "output\\transfer_04_driver_inference\\output_v2\\drivers_v2.json": "fbf212e602dad39981989004df88e97b73749f090af2f887ccee57e071ccdb07",
+    "output\\transfer_08_generalization\\output\\validation_bootstrap_ci.json": "ef553d9e28780a2187ec7bda37e2d43277d4a56b9460ba2479b8f117bd396754",
+    "output\\transfer_08_generalization\\output_g183904\\validation_g183904.json": "62aeccc13bb382b4d17d4796aac948de44d9bccada99c5bd1d3e84f663157446"
+  }
+}

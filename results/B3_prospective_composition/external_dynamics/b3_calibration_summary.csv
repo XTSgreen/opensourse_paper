@@ -1,0 +1,11 @@
+evaluation_dataset,method,expected_calibration_error,ci95_lower,ci95_upper,n_panels,n_predictions,n_states_per_prediction_mean,bootstrap_unit,bins,bootstrap_replicates
+GSE140802,development-target-transfer,0.0107272462047019,0.0056850801452739,0.0354028653395883,10,10,7.0,held-out panel as cluster; seeds retained together; cross-validation folds may share training observations,10,10000
+GSE140802,mioflow,0.1049647910390118,0.094572556453323,0.1151502428557405,10,50,7.0,held-out panel as cluster; seeds retained together; cross-validation folds may share training observations,10,10000
+GSE140802,prescient,0.0091434171935991,0.0060317064340221,0.0271661179687274,10,50,7.0,held-out panel as cluster; seeds retained together; cross-validation folds may share training observations,10,10000
+GSE140802,source-carry-forward,0.2431618534875469,0.2304764763818969,0.2551694512608701,10,10,7.0,held-out panel as cluster; seeds retained together; cross-validation folds may share training observations,10,10000
+GSE140802,tigon,0.2413262849660995,0.2286559059655354,0.2532737302440447,10,50,7.0,held-out panel as cluster; seeds retained together; cross-validation folds may share training observations,10,10000
+GSE239651_expt2,development-target-transfer,0.0243515258574671,0.0148441626357967,0.0376777934781186,8,8,6.0,held-out panel as cluster; seeds retained together; cross-validation folds may share training observations,10,10000
+GSE239651_expt2,mioflow,0.0277830698621686,0.01551477855342,0.0451012985515174,8,40,6.0,held-out panel as cluster; seeds retained together; cross-validation folds may share training observations,10,10000
+GSE239651_expt2,prescient,0.0578093776964536,0.0367158997712845,0.0785735162318236,8,40,6.0,held-out panel as cluster; seeds retained together; cross-validation folds may share training observations,10,10000
+GSE239651_expt2,source-carry-forward,0.0118627542793621,0.0058985354249087,0.0174063519630444,8,8,6.0,held-out panel as cluster; seeds retained together; cross-validation folds may share training observations,10,10000
+GSE239651_expt2,tigon,0.0098961767037235,0.0039976073900527,0.0154664851007017,8,40,6.0,held-out panel as cluster; seeds retained together; cross-validation folds may share training observations,10,10000

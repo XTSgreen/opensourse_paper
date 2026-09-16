@@ -1,0 +1,142 @@
+project: iot_revision_benchmark
+protocol_version: 1.0.0
+protocol_date: 2026-09-16
+protocol_frozen: true
+public_only: true
+random_seeds: [20260916, 20260917, 20260918, 20260919, 20260920]
+
+claims:
+  primary: >-
+    IOT retains non-inferior transition or future-composition prediction while
+    recovering more identifiable, stable and externally testable feature directions.
+  secondary:
+    - GH-IOT separates shared directions from context offsets under held-group evaluation.
+    - PERSIST-IOT improves strictly prospective future-state composition prediction.
+
+information_modes:
+  retrospective_reconstruction:
+    target_observations_allowed: true
+    target_marginal_allowed: true
+    future_clone_graph_allowed_when_method_contract_requires: true
+    enters_prospective_ranking: false
+  prospective_prediction:
+    target_observations_allowed: false
+    target_marginal_allowed: false
+    future_clone_graph_allowed_when_method_contract_requires: false
+    enters_prospective_ranking: true
+  oracle_upper_bound:
+    target_observations_allowed: true
+    target_marginal_allowed: true
+    future_clone_graph_allowed_when_method_contract_requires: true
+    enters_prospective_ranking: false
+
+benchmarks:
+  B1_known_truth:
+    type: synthetic_and_semisynthetic
+    scenarios:
+      - identifiable_soft_marginal
+      - hard_marginal_flat_direction
+      - equivalent_fit_multiple_parameters
+      - shared_plus_context_offset
+      - observation_noise_and_dropout
+      - nonlinear_or_hidden_confounding_misspecification
+    sample_sizes: [small, medium, large]
+    primary_metrics:
+      - coupling_relative_frobenius
+      - transition_weighted_l1
+      - coefficient_cosine
+      - coefficient_sign_accuracy
+      - minimum_curvature
+      - direction_seed_variance
+  B2_lineage_transition:
+    type: lineage_anchored_retrospective
+    datasets: [GSE140802, GSE239651, macsGESTALT]
+    primary_metrics:
+      - coupling_relative_frobenius
+      - transition_weighted_l1
+      - fate_spearman
+      - fate_top1_accuracy
+      - direction_pairwise_cosine
+  B3_prospective_composition:
+    type: strictly_prospective
+    datasets: [GSE239651_expt1, GSE239651_expt2, GSE140802]
+    primary_metrics:
+      - cross_entropy
+      - sinkhorn_divergence
+      - top1_accuracy
+      - multiclass_brier
+      - expected_calibration_error
+
+methods:
+  formal_iot: [UOT-IOT, GH-IOT, PERSIST-IOT]
+  required_external_families:
+    - Waddington-OT
+    - moscot
+    - LineageOT_or_CoSpar
+    - TIGON
+    - TrajectoryNet_or_MIOFlow
+    - CellRank_2
+    - PRESCIENT
+  conditional_external:
+    - scVelo
+    - dynamo
+  simple_baselines:
+    - empirical_target_marginal
+    - zero_centered_ridge
+    - OLS
+    - strongest_tree_model
+  ablations:
+    - hard_marginal_IOT
+    - IOT_without_direction
+    - GH_IOT_without_context_offset
+    - PERSIST_no_IOT
+
+evaluation:
+  outer_unit_priority: [independent_experiment, animal, clone_family, biological_replicate]
+  inner_selection_only: true
+  biological_unit_bootstrap: true
+  bootstrap_replicates: 10000
+  probability_floor: 1.0e-12
+  required_random_seed_count: 5
+  minimum_external_method_coverage: 0.80
+  gauge:
+    center_unidentifiable_constant_directions: true
+    l2_normalize_direction: true
+    save_magnitude_separately: true
+    sign_alignment_uses_training_data_only: true
+
+noninferiority:
+  locked_before_unified_final_run: true
+  lower_is_better_relative_margin:
+    cross_entropy: 0.05
+    sinkhorn_divergence: 0.05
+    coupling_relative_frobenius: 0.05
+    transition_weighted_l1: 0.05
+  higher_is_better_absolute_margin:
+    top1_accuracy: 0.03
+    fate_spearman: 0.05
+  decision_rule: paired_confidence_interval
+  confidence_level: 0.95
+
+gates:
+  G1_external_coverage:
+    required_fraction: 0.80
+  G2_three_benchmarks:
+    required: [B1_known_truth, B2_lineage_transition, B3_prospective_composition]
+  G3_prediction_noninferiority:
+    minimum_benchmarks_passed: 2
+  G4_parameter_recovery:
+    requires_known_truth_and_curvature: true
+  G5_direction_stability:
+    requires_paired_interval_support: true
+  G6_external_direction_test:
+    minimum_independent_tests_passed: 1
+  G7_clean_reproduction:
+    figures_required: [Figure1, Figure2, Figure3, Figure4, Figure5]
+  G8_public_release:
+    requires: [git_commit, release_tag, zenodo_doi, license, reviewer_tables]
+
+change_control:
+  modifying_metrics_splits_or_margins_requires_new_protocol_version: true
+  failed_methods_must_remain_in_status_table: true
+  outcome_dependent_dataset_exclusion_forbidden: true

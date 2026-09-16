@@ -1,0 +1,30 @@
+{
+  "benchmark": "B1_known_truth",
+  "mode": "full",
+  "scenarios": [
+    "identifiable_soft_marginal",
+    "hard_marginal_flat_direction",
+    "equivalent_fit_multiple_parameters",
+    "shared_plus_context_offset",
+    "observation_noise_and_dropout",
+    "nonlinear_or_hidden_confounding_misspecification"
+  ],
+  "sample_sizes": {
+    "small": 400,
+    "medium": 2000,
+    "large": 10000
+  },
+  "seeds": [
+    20260916,
+    20260917,
+    20260918,
+    20260919,
+    20260920
+  ],
+  "rows": 180,
+  "elapsed_seconds": 111.8698316,
+  "outputs": [
+    "b1_all_runs.csv",
+    "b1_summary.csv"
+  ]
+}

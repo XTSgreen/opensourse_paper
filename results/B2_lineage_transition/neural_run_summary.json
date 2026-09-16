@@ -1,0 +1,16 @@
+{
+  "runs": 60,
+  "success": 60,
+  "failed": 0,
+  "timeout": 0,
+  "seeds": [
+    20260916,
+    20260917,
+    20260918,
+    20260919,
+    20260920
+  ],
+  "mioflow_epochs": 50,
+  "prescient_epochs": 100,
+  "tigon_iterations": 100
+}

@@ -1,0 +1,15 @@
+method,family,status,implementation,tasks,commit,environment_note,target_information
+UOT-IOT,iot,benchmark_implementation_available,src/iot_benchmark/models/uot_iot.py,"['B1_known_truth', 'B2_lineage_transition']",,,
+GH-IOT,iot,local_available,src/iot_benchmark/models/gh_iot.py,"['B1_known_truth', 'B2_lineage_transition', 'B3_prospective_composition']",,,
+PERSIST-IOT,iot,local_available,src/iot_benchmark/models/persist_iot.py,['B3_prospective_composition'],,,
+Waddington-OT,required_external,official_adapter_complete,,['B2_lineage_transition'],ca5e94f05699997b01cf5ae13383f9810f0613f6,,
+moscot,required_external,official_adapter_complete,,['B2_lineage_transition'],440093ccbb8e70de209157d91da839c55b897821,,
+LineageOT_or_CoSpar,required_external,LineageOT_official_adapter_complete,,['B2_lineage_transition'],6081b402074f7e5934e729e81669aef430219da8,,
+TIGON,required_external,official_model_adapter_complete,,"['B2_lineage_transition', 'B3_prospective_composition']",1ed92cfcc250415fc01b4d344a308b0680cc9635,,
+TrajectoryNet_or_MIOFlow,required_external,MIOFlow_official_adapter_complete,,"['B2_lineage_transition', 'B3_prospective_composition']",36365403d0f23cc3ad1065781c7331bf81debf4e,,
+CellRank_2,required_external,official_adapter_complete,,['B2_lineage_transition'],d7191d75684c86b58adbb317c8aae7d06f2682f3,,
+PRESCIENT,required_external,official_model_adapter_complete,,['B3_prospective_composition'],50971c7d495e8763eaa60f83af91f51555ed7ece,pyreadr omitted because benchmark bypasses the upstream R preprocessing command,
+source-carry-forward,simple_baseline,benchmark_implementation_available,external_methods/adapters/run_prospective_baseline.py,['B3_prospective_composition'],,,
+development-target-transfer,simple_baseline,benchmark_implementation_available,external_methods/adapters/run_prospective_baseline.py,['B3_prospective_composition'],,,training-panel target composition only
+scVelo,conditional_external,input_not_available_audit_required,,['B2_lineage_transition'],,,
+dynamo,conditional_external,input_not_available_audit_required,,['B2_lineage_transition'],,,

@@ -1,0 +1,8 @@
+{
+  "method": "development-target-transfer",
+  "input": "data/derived/b3/train/gse140802_t2_t9_holdout_B2.npz",
+  "initial_input": "data/derived/b3/test_input/gse140802_t2_t9_holdout_B2.npz",
+  "output": "results/B3_prospective_composition/external_dynamics/development-target-transfer/gse140802_t2_t9_holdout_B2_seed20260916.npz",
+  "seed": 20260916,
+  "target_information_used": "training-panel target composition"
+}

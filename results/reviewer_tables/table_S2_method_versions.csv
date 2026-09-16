@@ -1,0 +1,8 @@
+method,repository,commit,commit_date,local_checkout,license_file,environment_group
+Waddington-OT,https://github.com/broadinstitute/wot.git,ca5e94f05699997b01cf5ae13383f9810f0613f6,2021-03-31 11:27:28-04:00,sources/wot,LICENSE,legacy_ot
+moscot,https://github.com/theislab/moscot.git,440093ccbb8e70de209157d91da839c55b897821,2026-08-25 17:57:58+02:00,sources/moscot,LICENSE,modern_scverse
+LineageOT,https://github.com/aforr/LineageOT.git,6081b402074f7e5934e729e81669aef430219da8,2023-07-28 16:25:43+01:00,sources/lineageot,LICENSE,legacy_ot
+TIGON,https://github.com/yutongo/TIGON.git,1ed92cfcc250415fc01b4d344a308b0680cc9635,2025-03-22 21:13:35-04:00,sources/tigon,LICENSE,neural_legacy
+MIOFlow,https://github.com/KrishnaswamyLab/MIOFlow.git,36365403d0f23cc3ad1065781c7331bf81debf4e,2026-06-15 12:51:32-04:00,sources/mioflow,LICENSE.md,neural_modern
+CellRank_2,https://github.com/scverse/cellrank.git,d7191d75684c86b58adbb317c8aae7d06f2682f3,2026-08-31 11:27:45-04:00,sources/cellrank2,LICENSE,modern_scverse
+PRESCIENT,https://github.com/gifford-lab/prescient.git,50971c7d495e8763eaa60f83af91f51555ed7ece,2025-01-20 16:08:40-05:00,sources/prescient,LICENSE,neural_legacy

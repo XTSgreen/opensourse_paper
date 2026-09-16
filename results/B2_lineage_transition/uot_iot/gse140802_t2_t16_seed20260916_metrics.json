@@ -1,0 +1,9 @@
+{
+  "panel": "data/derived/gse140802_t2_t16.npz",
+  "artifact": "results/B2_lineage_transition/uot_iot/gse140802_t2_t16_seed20260916.npz",
+  "coupling_relative_frobenius": 0.9874996653580814,
+  "transition_weighted_l1": 0.01074618422288549,
+  "fate_pearson": 0.6855422778990485,
+  "fate_spearman": 0.616007979755324,
+  "fate_top1_accuracy": 0.55
+}

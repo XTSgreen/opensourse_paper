@@ -1,0 +1,6 @@
+dataset,local_path,local_status,biological_unit,modes,benchmarks,velocity_layers_expected,locked_role
+GSE140802,data/processed/GSE140802,packaged_preprocessed,recipient_mouse,"['retrospective_reconstruction', 'prospective_prediction']","['B2_lineage_transition', 'B3_prospective_composition']",False,
+GSE239651,data/processed/GSE239651/gse239651_lineage_transition_records.csv,packaged_preprocessed,source_clone_family,['retrospective_reconstruction'],['B2_lineage_transition'],False,
+GSE239651_expt1,data/processed/GSE239651/gse239651_expt1_lineage_panel.parquet,packaged_preprocessed,source_clone_family,['prospective_prediction'],['B3_prospective_composition'],,development_oof
+GSE239651_expt2,data/processed/GSE239651/gse239651_expt2_lineage_panel.parquet,packaged_preprocessed,source_clone_family,['prospective_prediction'],['B3_prospective_composition'],,external_e1
+macsGESTALT,data/processed/GSE239651/macsgestalt_locked_transition_records.csv,packaged_preprocessed,clone_or_mouse,['retrospective_reconstruction'],['B2_lineage_transition'],False,

@@ -1,0 +1,31 @@
+{
+  "benchmark": "B3_prospective_composition",
+  "status": "imported_locked_PERSIST_experiment",
+  "partitions": [
+    "development_outer_oof",
+    "locked_external_e1"
+  ],
+  "metrics_recomputed_from_predictions": [
+    "cross_entropy",
+    "sinkhorn_divergence",
+    "top1_accuracy",
+    "brier_score",
+    "expected_calibration_error"
+  ],
+  "sinkhorn_ground_cost": "Euclidean distance between frozen day-0 state centroids, normalized by median positive distance",
+  "input_sha256": {
+    "output\\future_state_prediction_IOT\\persistence_sota_v2\\locked_primary_rerun\\development_outer_oof_predictions.parquet": "f0e4117d8e9aea4007465fbfd1c8f894c78a2f3762a2a2981e53689f27e7c38e",
+    "script\\future_state_prediction_IOT\\persistence_sota_v2\\data\\manifests\\gse239651_expt1_frozen_state_dictionary.npz": "f0e830d01d4bc3b7605e3e32f2f2b38b5ec4dc11aba2c085d016a1e46bfc9a97",
+    "output\\future_state_prediction_IOT\\persistence_sota_v2\\locked_primary_rerun\\external_e1_predictions.parquet": "37881cfe56540b831c1b99235e497ca6b8e3fb33fda9b0e2c54a45c2bede85f8",
+    "script\\future_state_prediction_IOT\\persistence_sota_v2\\data\\manifests\\gse239651_expt2_frozen_state_dictionary.npz": "f0e830d01d4bc3b7605e3e32f2f2b38b5ec4dc11aba2c085d016a1e46bfc9a97",
+    "output\\future_state_prediction_IOT\\persistence_sota_v2\\locked_primary_rerun\\development_outer_oof_metrics.csv": "3c4104cda3b7e4d694e1d68a73211f1331182a4787192c20ffe3e2c12fc2b869",
+    "output\\future_state_prediction_IOT\\persistence_sota_v2\\locked_primary_rerun\\external_e1_metrics.csv": "6c4312ba49538ae51ba9877da09b187c8d1d51a3e6629c9524f0ab3558f5a2dc",
+    "output\\future_state_prediction_IOT\\persistence_sota_v2\\locked_primary_rerun\\method_ranking.csv": "328a9d63b0e76c3c43b1cbb1751177ee63c7280c4ec3bc5baf903227e17d8af9",
+    "output\\future_state_prediction_IOT\\persistence_sota_v2\\locked_primary_rerun\\paired_clone_bootstrap_brier.csv": "6bffd6f9844e5e9473d95557c786c43744f3c33f51a23e1050d43ebc3379e6d5",
+    "output\\future_state_prediction_IOT\\persistence_sota_v2\\locked_primary_rerun\\leakage_and_data_contract_audit.json": "ad19e6661a85f1429a6ecfb4b80f0b6f5785cf787bce5674a6305ba346fb7d1f",
+    "output\\future_state_prediction_IOT\\persistence_sota_v2\\locked_primary_rerun\\finalization_manifest.json": "5ce3de26c48717c725f70f0c2a1af0e80a0ec3e742f8814da239ef18ad3b77a2",
+    "output\\future_state_prediction_IOT\\persistence_sota_v2\\locked_primary_rerun\\provisional_decision.json": "09669f898a23959156795265f128a36d33159ef0335094107efa8c46c0367fb2",
+    "output\\future_state_prediction_IOT\\persistence_sota_v2\\locked_primary_rerun\\RUN_REPORT.md": "794cf8dac22dde4e88446f83473fd200ef66355db54e2a0c3fd30671a97f4ab7"
+  },
+  "limitation": "External dynamic SOTA methods remain to be evaluated prospectively under the same frozen split."
+}

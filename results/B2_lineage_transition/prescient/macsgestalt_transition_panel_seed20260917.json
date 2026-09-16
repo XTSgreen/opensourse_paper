@@ -1,0 +1,17 @@
+{
+  "method": "PRESCIENT",
+  "method_version": "0.1.0@50971c7d495e8763eaa60f83af91f51555ed7ece",
+  "official_components": [
+    "prescient.train.model.AutoGenerator",
+    "prescient.train.model.OTLoss"
+  ],
+  "input": "data/derived/macsgestalt_transition_panel.npz",
+  "initial_input": null,
+  "output": "results/B2_lineage_transition/prescient/macsgestalt_transition_panel_seed20260917.npz",
+  "epochs": 100,
+  "steps": 10,
+  "seed": 20260917,
+  "final_loss": 0.028256988152861595,
+  "runtime_seconds": 1.0170947000000004,
+  "environment_deviation": "pyreadr omitted because benchmark input bypasses upstream R preprocessing CLI"
+}

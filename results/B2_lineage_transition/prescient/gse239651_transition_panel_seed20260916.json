@@ -1,0 +1,16 @@
+{
+  "method": "PRESCIENT",
+  "method_version": "0.1.0@50971c7d495e8763eaa60f83af91f51555ed7ece",
+  "official_components": [
+    "prescient.train.model.AutoGenerator",
+    "prescient.train.model.OTLoss"
+  ],
+  "input": "data/derived/gse239651_transition_panel.npz",
+  "output": "results/B2_lineage_transition/prescient/gse239651_transition_panel_seed20260916.npz",
+  "epochs": 100,
+  "steps": 10,
+  "seed": 20260916,
+  "final_loss": 0.06975507736206055,
+  "runtime_seconds": 8.1669479,
+  "environment_deviation": "pyreadr omitted because benchmark input bypasses upstream R preprocessing CLI"
+}

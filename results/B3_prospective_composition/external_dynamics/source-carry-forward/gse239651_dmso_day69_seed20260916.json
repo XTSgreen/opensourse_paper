@@ -1,0 +1,8 @@
+{
+  "method": "source-carry-forward",
+  "input": "data/derived/b3/train/gse239651_dmso_day69.npz",
+  "initial_input": "data/derived/b3/test_input/gse239651_dmso_day69.npz",
+  "output": "results/B3_prospective_composition/external_dynamics/source-carry-forward/gse239651_dmso_day69_seed20260916.npz",
+  "seed": 20260916,
+  "target_information_used": "none"
+}

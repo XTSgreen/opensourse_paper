@@ -1,0 +1,14 @@
+name: iot-legacy-ot
+channels: [conda-forge, bioconda]
+dependencies:
+  - python=3.9.25
+  - pip
+  - numpy=1.26.4
+  - pandas=2.3.3
+  - scipy=1.10.1
+  - scikit-learn=1.6.1
+  - matplotlib=3.9.4
+  - anndata=0.10.9
+  - pip:
+      - "git+https://github.com/broadinstitute/wot.git@ca5e94f05699997b01cf5ae13383f9810f0613f6"
+      - "git+https://github.com/aforr/LineageOT.git@6081b402074f7e5934e729e81669aef430219da8"

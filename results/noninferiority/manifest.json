@@ -1,0 +1,12 @@
+{
+  "gate_pass": true,
+  "minimum_benchmarks_required": 2,
+  "benchmark_decisions": {
+    "B1_known_truth": true,
+    "B2_lineage_transition": true,
+    "B3_prospective_composition": true
+  },
+  "benchmarks_passed": 3,
+  "bootstrap_replicates": 10000,
+  "scope_note": "B3 is a paired PERSIST-IOT ablation comparison. External dynamics methods are reported separately because they predict population composition rather than clone-level state probabilities."
+}

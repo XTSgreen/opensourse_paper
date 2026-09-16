@@ -1,0 +1,20 @@
+{
+  "method": "CellRank 2",
+  "method_version": "d7191d75684c86b58adbb317c8aae7d06f2682f3",
+  "panel": "data/derived/gse140802_t2_t16.npz",
+  "coupling": "results/B2_lineage_transition/moscot/gse140802_t2_t16.npz",
+  "output": "results/B2_lineage_transition/cellrank2/gse140802_t2_t16.npz",
+  "seed": 20260916,
+  "kernel": "RealTimeKernel with pinned moscot coupling",
+  "terminal_states": {
+    "progenitor": 4,
+    "erythroid": 22,
+    "lymphoid": 13,
+    "neutrophil": 1
+  },
+  "fate_shape": [
+    40,
+    4
+  ],
+  "runtime_seconds": 11.25775160000012
+}

@@ -1,0 +1,17 @@
+{
+  "figures": [
+    "Figure1",
+    "Figure2",
+    "Figure3",
+    "Figure4",
+    "Figure5"
+  ],
+  "vector_pdf": true,
+  "png_dpi": 300,
+  "width_mm": 183,
+  "source_files": 20,
+  "asset_mode": "parameter inheritance",
+  "target": "Nature-family standard",
+  "source_manifest_output_paths_exist": true,
+  "missing_manifest_outputs": []
+}

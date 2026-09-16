@@ -1,0 +1,15 @@
+{
+  "method": "MIOFlow",
+  "method_version": "0.1.14@36365403d0f23cc3ad1065781c7331bf81debf4e",
+  "input": "data/derived/macsgestalt_transition_panel.npz",
+  "output": "results/B2_lineage_transition/mioflow/macsgestalt_smoke.npz",
+  "epochs": 5,
+  "hidden_dim": 32,
+  "seed": 20260916,
+  "device": "cpu",
+  "generated_shape": [
+    42,
+    4
+  ],
+  "runtime_seconds": 16.014833600000202
+}

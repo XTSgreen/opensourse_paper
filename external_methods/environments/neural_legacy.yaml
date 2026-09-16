@@ -1,0 +1,15 @@
+name: iot-neural-legacy
+channels: [pytorch, conda-forge]
+dependencies:
+  - python=3.9.25
+  - pip
+  - pytorch=1.13.1
+  - pandas=2.0.3
+  - scikit-learn=1.3.2
+  - matplotlib=3.7.5
+  - scipy=1.10.1
+  - numpy=1.23.5
+  - pip:
+      - torchdiffeq==0.2.3
+      - TorchDiffEqPack==1.0.1
+      - "git+https://github.com/gifford-lab/prescient.git@50971c7d495e8763eaa60f83af91f51555ed7ece"

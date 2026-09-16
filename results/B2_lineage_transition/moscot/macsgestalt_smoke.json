@@ -1,0 +1,17 @@
+{
+  "method": "moscot",
+  "method_version": "0.5.2@440093ccbb8e70de209157d91da839c55b897821",
+  "input": "data/derived/macsgestalt_transition_panel.npz",
+  "output": "results/B2_lineage_transition/moscot/macsgestalt_smoke.npz",
+  "epsilon": 0.05,
+  "tau_a": 1.0,
+  "tau_b": 1.0,
+  "seed": 20260916,
+  "converged": true,
+  "coupling_shape": [
+    42,
+    42
+  ],
+  "coupling_total": 0.9999999999999988,
+  "runtime_seconds": 0.8245056999999179
+}

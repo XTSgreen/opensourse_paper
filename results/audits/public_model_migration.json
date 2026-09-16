@@ -1,0 +1,76 @@
+{
+  "self_contained": true,
+  "forbidden_references": [],
+  "formal_models": [
+    "UOT-IOT",
+    "GH-IOT",
+    "PERSIST-IOT"
+  ],
+  "source_mapping": [
+    {
+      "package_file": "src\\iot_benchmark\\models\\gh_backend.py",
+      "origin_file": "script/future_state_prediction_IOT/code/future_prediction_models.py",
+      "package_sha256": "16afde72088de600deed2b653093b0cfca687d471641771ce534f7fb15f67786",
+      "origin_available": true,
+      "origin_sha256": "f0b22e0451c897178c2792dd32f5f078a8c4cdead305f038040767baf8dd93d9",
+      "hash_match": false
+    },
+    {
+      "package_file": "src\\iot_benchmark\\models\\gh_iot.py",
+      "origin_file": "script/future_state_prediction_IOT/code/canonical_models/gh_iot.py",
+      "package_sha256": "c9ab4b44097667144363bd016f9d97b4e04ac4e82bb3362d864c2514857ccc9e",
+      "origin_available": true,
+      "origin_sha256": "9c8474a6ce7ee42bb80169f575bf61bb457653ecb1f9324c0f902180541d9064",
+      "hash_match": false
+    },
+    {
+      "package_file": "src\\iot_benchmark\\models\\uot_iot_canonical.py",
+      "origin_file": "script/future_state_prediction_IOT/code/canonical_models/uot_iot.py",
+      "package_sha256": "bcecc5231e8f42ee5afc550d0530a62f1828b27814901978eccea9d1dc857df5",
+      "origin_available": true,
+      "origin_sha256": "df2b3beab2dbebcd89de1f03b1e445b233d238d001fce2cc7c8dc0ec1aa1ba9a",
+      "hash_match": false
+    },
+    {
+      "package_file": "src\\iot_benchmark\\models\\persist_iot.py",
+      "origin_file": "script/future_state_prediction_IOT/code/canonical_models/persist_iot.py",
+      "package_sha256": "c613a4f3b4d893b50659932689766fa9a5b96576be33ac391925feb8c37b615c",
+      "origin_available": true,
+      "origin_sha256": "eab2707c6ea504822ce6b2be9b9d07b0a63110a88971c0e8f75768ce02190989",
+      "hash_match": false
+    },
+    {
+      "package_file": "src\\iot_benchmark\\models\\persist_features.py",
+      "origin_file": "script/future_state_prediction_IOT/persistence_sota_v2/code/data_builders/forecast_cases.py",
+      "package_sha256": "a748b108dfc559c6937f4b2d76a0b84f8fec331261f8864110dcdb3c274fbeb2",
+      "origin_available": true,
+      "origin_sha256": "4352eec632b9ed9c7e9b80cda35c9b53ad62dbb9a3e95eafa39ebe8db11ae1f8",
+      "hash_match": false
+    },
+    {
+      "package_file": "src\\iot_benchmark\\models\\persist_hmm.py",
+      "origin_file": "script/future_state_prediction_IOT/persistence_sota_v2/code/models/persist_hmm.py",
+      "package_sha256": "e5e70a49e6d9101faff047512cca36aec6d5ae4cf980690289b82e4d49402bd4",
+      "origin_available": true,
+      "origin_sha256": "a444d9d7ffab9a7d39441ba678e1fa1a39eb7b682378d9af61f7c5f5b67f306c",
+      "hash_match": false
+    },
+    {
+      "package_file": "src\\iot_benchmark\\models\\prospective_iot.py",
+      "origin_file": "script/future_state_prediction_IOT/persistence_sota_v2/code/models/prospective_iot.py",
+      "package_sha256": "fbb3ee642d7ee6fad6ea9eba76838ecf1a33a9685f0c085c9c8e4dfb96045e67",
+      "origin_available": true,
+      "origin_sha256": "5a41bf3f92ece98e257763c8bb50e124970403c82ef48811e4403c9d6d41e541",
+      "hash_match": false
+    },
+    {
+      "package_file": "src\\iot_benchmark\\models\\persist_iot_estimator.py",
+      "origin_file": "script/future_state_prediction_IOT/persistence_sota_v2/code/models/persist_iot_estimator.py",
+      "package_sha256": "ed4bd9a9ffb3f85609b149abd36ed527491e94fc934fd332660ff4d3bba0fc72",
+      "origin_available": true,
+      "origin_sha256": "7b257da79b33e0e4a8d6db89656e0b6c4cbe7eb3f6d6af4efa19f610a65782ff",
+      "hash_match": false
+    }
+  ],
+  "audit_note": "Historical source hashes are checked when the provenance tree is present; the packaged model code is independently executable without it."
+}

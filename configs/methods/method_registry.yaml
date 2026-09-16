@@ -1,0 +1,71 @@
+methods:
+  UOT-IOT:
+    family: iot
+    status: benchmark_implementation_available
+    implementation: src/iot_benchmark/models/uot_iot.py
+    tasks: [B1_known_truth, B2_lineage_transition]
+  GH-IOT:
+    family: iot
+    status: local_available
+    implementation: src/iot_benchmark/models/gh_iot.py
+    tasks: [B1_known_truth, B2_lineage_transition, B3_prospective_composition]
+  PERSIST-IOT:
+    family: iot
+    status: local_available
+    implementation: src/iot_benchmark/models/persist_iot.py
+    tasks: [B3_prospective_composition]
+  Waddington-OT:
+    family: required_external
+    status: official_adapter_complete
+    commit: ca5e94f05699997b01cf5ae13383f9810f0613f6
+    tasks: [B2_lineage_transition]
+  moscot:
+    family: required_external
+    status: official_adapter_complete
+    commit: 440093ccbb8e70de209157d91da839c55b897821
+    tasks: [B2_lineage_transition]
+  LineageOT_or_CoSpar:
+    family: required_external
+    status: LineageOT_official_adapter_complete
+    commit: 6081b402074f7e5934e729e81669aef430219da8
+    tasks: [B2_lineage_transition]
+  TIGON:
+    family: required_external
+    status: official_model_adapter_complete
+    commit: 1ed92cfcc250415fc01b4d344a308b0680cc9635
+    tasks: [B2_lineage_transition, B3_prospective_composition]
+  TrajectoryNet_or_MIOFlow:
+    family: required_external
+    status: MIOFlow_official_adapter_complete
+    commit: 36365403d0f23cc3ad1065781c7331bf81debf4e
+    tasks: [B2_lineage_transition, B3_prospective_composition]
+  CellRank_2:
+    family: required_external
+    status: official_adapter_complete
+    commit: d7191d75684c86b58adbb317c8aae7d06f2682f3
+    tasks: [B2_lineage_transition]
+  PRESCIENT:
+    family: required_external
+    status: official_model_adapter_complete
+    commit: 50971c7d495e8763eaa60f83af91f51555ed7ece
+    environment_note: pyreadr omitted because benchmark bypasses the upstream R preprocessing command
+    tasks: [B3_prospective_composition]
+  source-carry-forward:
+    family: simple_baseline
+    status: benchmark_implementation_available
+    implementation: external_methods/adapters/run_prospective_baseline.py
+    tasks: [B3_prospective_composition]
+  development-target-transfer:
+    family: simple_baseline
+    status: benchmark_implementation_available
+    implementation: external_methods/adapters/run_prospective_baseline.py
+    target_information: training-panel target composition only
+    tasks: [B3_prospective_composition]
+  scVelo:
+    family: conditional_external
+    status: input_not_available_audit_required
+    tasks: [B2_lineage_transition]
+  dynamo:
+    family: conditional_external
+    status: input_not_available_audit_required
+    tasks: [B2_lineage_transition]

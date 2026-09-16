@@ -1,0 +1,9 @@
+{
+  "panel": "data/derived/gse239651_transition_panel.npz",
+  "artifact": "results/B2_lineage_transition/tigon/gse239651_transition_panel_seed20260916.npz",
+  "coupling_relative_frobenius": 0.9991391301135109,
+  "transition_weighted_l1": 0.29741171788925036,
+  "fate_pearson": 0.41484693294079034,
+  "fate_spearman": 0.5015412113083324,
+  "fate_top1_accuracy": 0.289044289044289
+}

@@ -1,0 +1,9 @@
+{
+  "panel": "data/derived/macsgestalt_transition_panel.npz",
+  "artifact": "results/B2_lineage_transition/cellrank2/macsgestalt_smoke.npz",
+  "coupling_relative_frobenius": "NA-by-design",
+  "transition_weighted_l1": "NA-by-design",
+  "fate_pearson": 0.6633623991223192,
+  "fate_spearman": 0.47240906047354825,
+  "fate_top1_accuracy": 0.7380952380952381
+}

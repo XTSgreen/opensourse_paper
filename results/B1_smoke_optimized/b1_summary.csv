@@ -1,0 +1,5 @@
+scenario,sample_size,method,heldout_coupling_mean,coefficient_cosine_mean,coefficient_sign_accuracy_mean,pure_column_minimum_curvature_mean,restart_direction_variance_mean,runtime_seconds
+hard_marginal_flat_direction,small,hard_ot,0.08139394538595,0.7712668930877951,0.8333333333333334,0.0,0.0647746140579003,0.1305251999999654
+hard_marginal_flat_direction,small,soft_iot,0.0207699812570886,0.9995515514095292,1.0,0.237363408928104,3.798305901454861e-13,0.983563199999935
+identifiable_soft_marginal,small,hard_ot,0.08139394538595,0.7712668930877951,0.8333333333333334,0.0,0.0647746140579003,0.128837699999849
+identifiable_soft_marginal,small,soft_iot,0.0207699812570886,0.9995515514095292,1.0,0.237363408928104,3.798305901454861e-13,1.0350960000000669

@@ -1,0 +1,9 @@
+{
+  "panel": "data/derived/gse140802_t2_t16.npz",
+  "artifact": "results/B2_lineage_transition/cellrank2/gse140802_t2_t16.npz",
+  "coupling_relative_frobenius": "NA-by-design",
+  "transition_weighted_l1": "NA-by-design",
+  "fate_pearson": 0.67655602763955,
+  "fate_spearman": 0.5966825914669532,
+  "fate_top1_accuracy": 0.55
+}

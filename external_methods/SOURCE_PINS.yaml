@@ -1,0 +1,52 @@
+generated_at: 2026-09-16
+selection_policy: official_author_or_maintainer_repository
+methods:
+  Waddington-OT:
+    repository: https://github.com/broadinstitute/wot.git
+    commit: ca5e94f05699997b01cf5ae13383f9810f0613f6
+    commit_date: 2021-03-31T11:27:28-04:00
+    local_checkout: sources/wot
+    license_file: LICENSE
+    environment_group: legacy_ot
+  moscot:
+    repository: https://github.com/theislab/moscot.git
+    commit: 440093ccbb8e70de209157d91da839c55b897821
+    commit_date: 2026-08-25T17:57:58+02:00
+    local_checkout: sources/moscot
+    license_file: LICENSE
+    environment_group: modern_scverse
+  LineageOT:
+    repository: https://github.com/aforr/LineageOT.git
+    commit: 6081b402074f7e5934e729e81669aef430219da8
+    commit_date: 2023-07-28T16:25:43+01:00
+    local_checkout: sources/lineageot
+    license_file: LICENSE
+    environment_group: legacy_ot
+  TIGON:
+    repository: https://github.com/yutongo/TIGON.git
+    commit: 1ed92cfcc250415fc01b4d344a308b0680cc9635
+    commit_date: 2025-03-22T21:13:35-04:00
+    local_checkout: sources/tigon
+    license_file: LICENSE
+    environment_group: neural_legacy
+  MIOFlow:
+    repository: https://github.com/KrishnaswamyLab/MIOFlow.git
+    commit: 36365403d0f23cc3ad1065781c7331bf81debf4e
+    commit_date: 2026-06-15T12:51:32-04:00
+    local_checkout: sources/mioflow
+    license_file: LICENSE.md
+    environment_group: neural_modern
+  CellRank_2:
+    repository: https://github.com/scverse/cellrank.git
+    commit: d7191d75684c86b58adbb317c8aae7d06f2682f3
+    commit_date: 2026-08-31T11:27:45-04:00
+    local_checkout: sources/cellrank2
+    license_file: LICENSE
+    environment_group: modern_scverse
+  PRESCIENT:
+    repository: https://github.com/gifford-lab/prescient.git
+    commit: 50971c7d495e8763eaa60f83af91f51555ed7ece
+    commit_date: 2025-01-20T16:08:40-05:00
+    local_checkout: sources/prescient
+    license_file: LICENSE
+    environment_group: neural_legacy

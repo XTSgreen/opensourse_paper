@@ -1,0 +1,21 @@
+dataset,partition,method,status,reason,state_n,cross_entropy,sinkhorn_divergence,top1_accuracy,brier_score,expected_calibration_error
+GSE239651_expt1,development_outer_oof,PERSIST-IOT,success,,4867,1.0370164120742835,0.1024034576297865,0.6443394288062462,0.2851258100055829,0.0887882896405101
+GSE239651_expt1,development_outer_oof,PERSIST-no-IOT,success,,4867,6.955561833086343,0.1784467192593128,0.4970207520032874,0.5164761222815634,0.2392807832146085
+GSE239651_expt1,development_outer_oof,count_horizon_logistic,not_applicable,method does not emit a future-state probability vector,0,,,,,
+GSE239651_expt1,development_outer_oof,extra_trees,not_applicable,method does not emit a future-state probability vector,0,,,,,
+GSE239651_expt1,development_outer_oof,hist_gradient_boosting,not_applicable,method does not emit a future-state probability vector,0,,,,,
+GSE239651_expt1,development_outer_oof,knn_standardized,not_applicable,method does not emit a future-state probability vector,0,,,,,
+GSE239651_expt1,development_outer_oof,prevalence_only,not_applicable,method does not emit a future-state probability vector,0,,,,,
+GSE239651_expt1,development_outer_oof,random_forest,not_applicable,method does not emit a future-state probability vector,0,,,,,
+GSE239651_expt1,development_outer_oof,ridge_logistic,not_applicable,method does not emit a future-state probability vector,0,,,,,
+GSE239651_expt1,development_outer_oof,source_count_logistic,not_applicable,method does not emit a future-state probability vector,0,,,,,
+GSE239651_expt2,locked_external_e1,PERSIST-IOT,success,,7267,0.9859026620053872,0.1110045964504361,0.6819870648135407,0.3592909630817728,0.0915102460671916
+GSE239651_expt2,locked_external_e1,PERSIST-no-IOT,success,,7267,6.549742700206335,0.1965103520808689,0.475024081464153,0.597281963260918,0.2342588619523692
+GSE239651_expt2,locked_external_e1,count_horizon_logistic,not_applicable,method does not emit a future-state probability vector,0,,,,,
+GSE239651_expt2,locked_external_e1,extra_trees,not_applicable,method does not emit a future-state probability vector,0,,,,,
+GSE239651_expt2,locked_external_e1,hist_gradient_boosting,not_applicable,method does not emit a future-state probability vector,0,,,,,
+GSE239651_expt2,locked_external_e1,knn_standardized,not_applicable,method does not emit a future-state probability vector,0,,,,,
+GSE239651_expt2,locked_external_e1,prevalence_only,not_applicable,method does not emit a future-state probability vector,0,,,,,
+GSE239651_expt2,locked_external_e1,random_forest,not_applicable,method does not emit a future-state probability vector,0,,,,,
+GSE239651_expt2,locked_external_e1,ridge_logistic,not_applicable,method does not emit a future-state probability vector,0,,,,,
+GSE239651_expt2,locked_external_e1,source_count_logistic,not_applicable,method does not emit a future-state probability vector,0,,,,,

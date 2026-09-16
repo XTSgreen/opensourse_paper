@@ -1,0 +1,89 @@
+{
+  "conditional_methods": [
+    "scVelo",
+    "dynamo"
+  ],
+  "decision": "not_applicable",
+  "records": [
+    {
+      "dataset": "GSE140802",
+      "method": "scVelo",
+      "status": "not_applicable",
+      "reason": "frozen public panel has no spliced/unspliced layers",
+      "velocity_layers": false,
+      "raw_kinetics": false
+    },
+    {
+      "dataset": "GSE140802",
+      "method": "dynamo",
+      "status": "not_applicable",
+      "reason": "frozen public panel has neither metabolic-label kinetics nor velocity layers",
+      "velocity_layers": false,
+      "raw_kinetics": false
+    },
+    {
+      "dataset": "GSE239651",
+      "method": "scVelo",
+      "status": "not_applicable",
+      "reason": "frozen public panel has no spliced/unspliced layers",
+      "velocity_layers": false,
+      "raw_kinetics": false
+    },
+    {
+      "dataset": "GSE239651",
+      "method": "dynamo",
+      "status": "not_applicable",
+      "reason": "frozen public panel has neither metabolic-label kinetics nor velocity layers",
+      "velocity_layers": false,
+      "raw_kinetics": false
+    },
+    {
+      "dataset": "GSE239651_expt1",
+      "method": "scVelo",
+      "status": "not_applicable",
+      "reason": "frozen public panel has no spliced/unspliced layers",
+      "velocity_layers": false,
+      "raw_kinetics": false
+    },
+    {
+      "dataset": "GSE239651_expt1",
+      "method": "dynamo",
+      "status": "not_applicable",
+      "reason": "frozen public panel has neither metabolic-label kinetics nor velocity layers",
+      "velocity_layers": false,
+      "raw_kinetics": false
+    },
+    {
+      "dataset": "GSE239651_expt2",
+      "method": "scVelo",
+      "status": "not_applicable",
+      "reason": "frozen public panel has no spliced/unspliced layers",
+      "velocity_layers": false,
+      "raw_kinetics": false
+    },
+    {
+      "dataset": "GSE239651_expt2",
+      "method": "dynamo",
+      "status": "not_applicable",
+      "reason": "frozen public panel has neither metabolic-label kinetics nor velocity layers",
+      "velocity_layers": false,
+      "raw_kinetics": false
+    },
+    {
+      "dataset": "macsGESTALT",
+      "method": "scVelo",
+      "status": "not_applicable",
+      "reason": "frozen public panel has no spliced/unspliced layers",
+      "velocity_layers": false,
+      "raw_kinetics": false
+    },
+    {
+      "dataset": "macsGESTALT",
+      "method": "dynamo",
+      "status": "not_applicable",
+      "reason": "frozen public panel has neither metabolic-label kinetics nor velocity layers",
+      "velocity_layers": false,
+      "raw_kinetics": false
+    }
+  ]
+}

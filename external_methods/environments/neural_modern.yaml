@@ -1,0 +1,15 @@
+name: iot-neural-modern
+channels: [pytorch, nvidia, conda-forge]
+dependencies:
+  - python=3.10.20
+  - pip
+  - numpy=2.2.6
+  - pandas=2.3.3
+  - scipy=1.15.3
+  - scikit-learn=1.7.2
+  - matplotlib=3.10.9
+  - anndata=0.11.4
+  - scanpy=1.11.5
+  - pytorch=2.14.0
+  - pip:
+      - "git+https://github.com/KrishnaswamyLab/MIOFlow.git@36365403d0f23cc3ad1065781c7331bf81debf4e"

@@ -1,0 +1,8 @@
+{
+  "gate_pass": true,
+  "known_truth_component_pass": true,
+  "real_data_parameter_direction_min_cosine": 0.9963128669912582,
+  "output_proxy_comparisons_with_positive_ci": 3,
+  "output_proxy_comparisons_total": 3,
+  "interpretation": "The output-change proxy is comparable across seeded methods but is not a learned feature coefficient. Methods lacking an explicit comparable direction are recorded as structurally non-estimable, not unstable."
+}

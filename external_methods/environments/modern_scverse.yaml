@@ -1,0 +1,15 @@
+name: iot-modern-scverse
+channels: [conda-forge, bioconda]
+dependencies:
+  - python=3.12.13
+  - pip
+  - numpy=2.5.3
+  - pandas=3.0.5
+  - scipy=1.16.3
+  - scikit-learn=1.9.1
+  - matplotlib=3.11.2
+  - anndata=0.13.3.post0
+  - scanpy=1.12.4
+  - pip:
+      - "git+https://github.com/theislab/moscot.git@440093ccbb8e70de209157d91da839c55b897821"
+      - "git+https://github.com/scverse/cellrank.git@d7191d75684c86b58adbb317c8aae7d06f2682f3"

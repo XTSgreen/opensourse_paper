@@ -1,0 +1,15 @@
+{
+  "method": "TIGON",
+  "method_version": "1ed92cfcc250415fc01b4d344a308b0680cc9635",
+  "official_components": [
+    "utility.UOT",
+    "utility.train_model"
+  ],
+  "input": "data/derived/macsgestalt_transition_panel.npz",
+  "output": "results/B2_lineage_transition/tigon/macsgestalt_smoke.npz",
+  "iterations": 1,
+  "samples": 8,
+  "seed": 20260916,
+  "final_loss": 5.237940788269043,
+  "runtime_seconds": 0.1924899
+}

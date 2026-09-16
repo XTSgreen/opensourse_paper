@@ -1,0 +1,189 @@
+{
+  "protocol_version": "1.0.0",
+  "protocol_sha256": "950d0cdd8345d363f50d82afca9c02b9d969ad03056b982068f7d297c60200d0",
+  "project_root": ".",
+  "package_root": ".",
+  "datasets": [
+    {
+      "dataset": "GSE140802",
+      "declared_status": "packaged_preprocessed",
+      "path": "data/processed/GSE140802",
+      "exists": true,
+      "kind": "directory"
+    },
+    {
+      "dataset": "GSE239651",
+      "declared_status": "packaged_preprocessed",
+      "path": "data/processed/GSE239651/gse239651_lineage_transition_records.csv",
+      "exists": true,
+      "kind": "file"
+    },
+    {
+      "dataset": "GSE239651_expt1",
+      "declared_status": "packaged_preprocessed",
+      "path": "data/processed/GSE239651/gse239651_expt1_lineage_panel.parquet",
+      "exists": true,
+      "kind": "file"
+    },
+    {
+      "dataset": "GSE239651_expt2",
+      "declared_status": "packaged_preprocessed",
+      "path": "data/processed/GSE239651/gse239651_expt2_lineage_panel.parquet",
+      "exists": true,
+      "kind": "file"
+    },
+    {
+      "dataset": "macsGESTALT",
+      "declared_status": "packaged_preprocessed",
+      "path": "data/processed/GSE239651/macsgestalt_locked_transition_records.csv",
+      "exists": true,
+      "kind": "file"
+    }
+  ],
+  "all_declared_local_assets_exist": true,
+  "methods": [
+    {
+      "method": "UOT-IOT",
+      "family": "iot",
+      "status": "benchmark_implementation_available",
+      "implementation": "src/iot_benchmark/models/uot_iot.py",
+      "tasks": [
+        "B1_known_truth",
+        "B2_lineage_transition"
+      ],
+      "implementation_path": "src/iot_benchmark/models/uot_iot.py",
+      "implementation_exists": true
+    },
+    {
+      "method": "GH-IOT",
+      "family": "iot",
+      "status": "local_available",
+      "implementation": "src/iot_benchmark/models/gh_iot.py",
+      "tasks": [
+        "B1_known_truth",
+        "B2_lineage_transition",
+        "B3_prospective_composition"
+      ],
+      "implementation_path": "src/iot_benchmark/models/gh_iot.py",
+      "implementation_exists": true
+    },
+    {
+      "method": "PERSIST-IOT",
+      "family": "iot",
+      "status": "local_available",
+      "implementation": "src/iot_benchmark/models/persist_iot.py",
+      "tasks": [
+        "B3_prospective_composition"
+      ],
+      "implementation_path": "src/iot_benchmark/models/persist_iot.py",
+      "implementation_exists": true
+    },
+    {
+      "method": "Waddington-OT",
+      "family": "required_external",
+      "status": "official_adapter_complete",
+      "commit": "ca5e94f05699997b01cf5ae13383f9810f0613f6",
+      "tasks": [
+        "B2_lineage_transition"
+      ]
+    },
+    {
+      "method": "moscot",
+      "family": "required_external",
+      "status": "official_adapter_complete",
+      "commit": "440093ccbb8e70de209157d91da839c55b897821",
+      "tasks": [
+        "B2_lineage_transition"
+      ]
+    },
+    {
+      "method": "LineageOT_or_CoSpar",
+      "family": "required_external",
+      "status": "LineageOT_official_adapter_complete",
+      "commit": "6081b402074f7e5934e729e81669aef430219da8",
+      "tasks": [
+        "B2_lineage_transition"
+      ]
+    },
+    {
+      "method": "TIGON",
+      "family": "required_external",
+      "status": "official_model_adapter_complete",
+      "commit": "1ed92cfcc250415fc01b4d344a308b0680cc9635",
+      "tasks": [
+        "B2_lineage_transition",
+        "B3_prospective_composition"
+      ]
+    },
+    {
+      "method": "TrajectoryNet_or_MIOFlow",
+      "family": "required_external",
+      "status": "MIOFlow_official_adapter_complete",
+      "commit": "36365403d0f23cc3ad1065781c7331bf81debf4e",
+      "tasks": [
+        "B2_lineage_transition",
+        "B3_prospective_composition"
+      ]
+    },
+    {
+      "method": "CellRank_2",
+      "family": "required_external",
+      "status": "official_adapter_complete",
+      "commit": "d7191d75684c86b58adbb317c8aae7d06f2682f3",
+      "tasks": [
+        "B2_lineage_transition"
+      ]
+    },
+    {
+      "method": "PRESCIENT",
+      "family": "required_external",
+      "status": "official_model_adapter_complete",
+      "commit": "50971c7d495e8763eaa60f83af91f51555ed7ece",
+      "environment_note": "pyreadr omitted because benchmark bypasses the upstream R preprocessing command",
+      "tasks": [
+        "B3_prospective_composition"
+      ]
+    },
+    {
+      "method": "source-carry-forward",
+      "family": "simple_baseline",
+      "status": "benchmark_implementation_available",
+      "implementation": "external_methods/adapters/run_prospective_baseline.py",
+      "tasks": [
+        "B3_prospective_composition"
+      ],
+      "implementation_path": "external_methods/adapters/run_prospective_baseline.py",
+      "implementation_exists": true
+    },
+    {
+      "method": "development-target-transfer",
+      "family": "simple_baseline",
+      "status": "benchmark_implementation_available",
+      "implementation": "external_methods/adapters/run_prospective_baseline.py",
+      "target_information": "training-panel target composition only",
+      "tasks": [
+        "B3_prospective_composition"
+      ],
+      "implementation_path": "external_methods/adapters/run_prospective_baseline.py",
+      "implementation_exists": true
+    },
+    {
+      "method": "scVelo",
+      "family": "conditional_external",
+      "status": "input_not_available_audit_required",
+      "tasks": [
+        "B2_lineage_transition"
+      ]
+    },
+    {
+      "method": "dynamo",
+      "family": "conditional_external",
+      "status": "input_not_available_audit_required",
+      "tasks": [
+        "B2_lineage_transition"
+      ]
+    }
+  ],
+  "all_required_method_families_registered": true,
+  "adapter_pending_count": 0
+}

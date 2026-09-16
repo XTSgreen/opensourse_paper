@@ -1,0 +1,16 @@
+{
+  "method": "TIGON",
+  "method_version": "1ed92cfcc250415fc01b4d344a308b0680cc9635",
+  "official_components": [
+    "utility.UOT",
+    "utility.train_model"
+  ],
+  "input": "data/derived/b3/train/gse239651_dmso_day3.npz",
+  "initial_input": "data/derived/b3/test_input/gse239651_dmso_day3.npz",
+  "output": "results/B3_prospective_composition/external_dynamics/tigon/gse239651_dmso_day3_seed20260920.npz",
+  "iterations": 100,
+  "samples": 64,
+  "seed": 20260920,
+  "final_loss": 0.014407388865947723,
+  "runtime_seconds": 114.2309571
+}

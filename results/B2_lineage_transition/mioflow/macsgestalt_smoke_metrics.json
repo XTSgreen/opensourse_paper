@@ -1,0 +1,9 @@
+{
+  "panel": "data/derived/macsgestalt_transition_panel.npz",
+  "artifact": "results/B2_lineage_transition/mioflow/macsgestalt_smoke.npz",
+  "cross_entropy": 1.7284324472512296,
+  "sinkhorn_divergence": 1.1149939391028043,
+  "top1_accuracy": 0.0,
+  "multiclass_brier": 0.4247487055764396,
+  "calibration": "NA-by-design-single-population"
+}

@@ -1,0 +1,9 @@
+{
+  "panel": "data/derived/gse140802_t2_t16.npz",
+  "artifact": "results/B2_lineage_transition/prescient/gse140802_t2_t16_seed20260916.npz",
+  "coupling_relative_frobenius": 0.9898361198925616,
+  "transition_weighted_l1": 0.02752394374287959,
+  "fate_pearson": 0.6857582828457882,
+  "fate_spearman": 0.6021522172747454,
+  "fate_top1_accuracy": 0.55
+}

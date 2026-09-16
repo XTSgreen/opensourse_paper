@@ -1,0 +1,20 @@
+{
+  "benchmark": "B1_known_truth",
+  "mode": "smoke",
+  "scenarios": [
+    "identifiable_soft_marginal",
+    "hard_marginal_flat_direction"
+  ],
+  "sample_sizes": {
+    "small": 400
+  },
+  "seeds": [
+    20260916
+  ],
+  "rows": 4,
+  "elapsed_seconds": 2.403096000000005,
+  "outputs": [
+    "b1_all_runs.csv",
+    "b1_summary.csv"
+  ]
+}

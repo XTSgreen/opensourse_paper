@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0.0",
+  "project_root": ".",
+  "panels": [
+    {
+      "path": "data/derived/gse140802_t2_t9.npz",
+      "sha256": "3712b3b60311577e01e5682b4168b947997448f0d299c7d7773c7d0155f282b2",
+      "bytes": 6168,
+      "dataset": "GSE140802",
+      "source_asset": "data\\processed\\GSE140802\\gse140802_in_vivo_t2_t9.npz",
+      "source_asset_sha256": "d1a32c25c9e887f912b55f7bf596622c58973fb31ecd40d65eb528219560fed9",
+      "rows": 152,
+      "states": 7,
+      "biological_units": 6,
+      "information_modes": [
+        "retrospective_reconstruction",
+        "prospective_prediction"
+      ]
+    },
+    {
+      "path": "data/derived/gse140802_t2_t16.npz",
+      "sha256": "b02aa837e9f4818939c5967336f0165f1b6b6145247a2f41cb2d4241e4e6a489",
+      "bytes": 3317,
+      "dataset": "GSE140802",
+      "source_asset": "data\\processed\\GSE140802\\gse140802_in_vivo_t2_t16.npz",
+      "source_asset_sha256": "f7918686fb75fa3cabb5d76f570a15d9bbbc7eda6b7b208d8acd2a280be399cc",
+      "rows": 40,
+      "states": 7,
+      "biological_units": 4,
+      "information_modes": [
+        "retrospective_reconstruction",
+        "prospective_prediction"
+      ]
+    },
+    {
+      "path": "data/derived/gse239651_transition_panel.npz",
+      "sha256": "c9bf4093ea4b88c6ce449cf80c8384a4ad01ed245d43b5c0f9a0a8ab59a4bedd",
+      "bytes": 8907,
+      "dataset": "GSE239651",
+      "source_asset": "data\\processed\\GSE239651\\gse239651_lineage_transition_records.csv",
+      "source_asset_sha256": "8860687b83c954204836bc2ca008296d50dbc5c7b07a7f014159293d5a07f7bb",
+      "rows": 429,
+      "states": 6,
+      "biological_units": 4,
+      "information_modes": [
+        "retrospective_reconstruction"
+      ]
+    },
+    {
+      "path": "data/derived/macsgestalt_transition_panel.npz",
+      "sha256": "65de8501c0fed02c1b31eb06d381542dc1da678e55d71204261d463368d26376",
+      "bytes": 3912,
+      "dataset": "macsGESTALT",
+      "source_asset": "data\\processed\\GSE239651\\macsgestalt_locked_transition_records.csv",
+      "source_asset_sha256": "49ea89a65924f83560fcc68744683c56458b11fb1769d1ca3d75b0644d700e17",
+      "rows": 42,
+      "states": 4,
+      "biological_units": 2,
+      "information_modes": [
+        "retrospective_reconstruction"
+      ]
+    }
+  ],
+  "prospective_boundary_checks": [
+    {
+      "panel": "data/derived/gse140802_t2_t9.npz",
+      "prospective_feature_keys": [
+        "group",
+        "lineage_id",
+        "source_composition",
+        "source_counts",
+        "source_time",
+        "state_names"
+      ],
+      "target_label_keys": [
+        "target_composition",
+        "target_counts",
+        "target_time"
+      ],
+      "target_keys_in_prospective_features": [],
+      "pass": true
+    },
+    {
+      "panel": "data/derived/gse140802_t2_t16.npz",
+      "prospective_feature_keys": [
+        "group",
+        "lineage_id",
+        "source_composition",
+        "source_counts",
+        "source_time",
+        "state_names"
+      ],
+      "target_label_keys": [
+        "target_composition",
+        "target_counts",
+        "target_time"
+      ],
+      "target_keys_in_prospective_features": [],
+      "pass": true
+    }
+  ],
+  "all_boundary_checks_pass": true
+}

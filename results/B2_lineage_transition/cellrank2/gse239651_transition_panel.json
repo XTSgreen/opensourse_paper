@@ -1,0 +1,22 @@
+{
+  "method": "CellRank 2",
+  "method_version": "d7191d75684c86b58adbb317c8aae7d06f2682f3",
+  "panel": "data/derived/gse239651_transition_panel.npz",
+  "coupling": "results/B2_lineage_transition/moscot/gse239651_transition_panel.npz",
+  "output": "results/B2_lineage_transition/cellrank2/gse239651_transition_panel.npz",
+  "seed": 20260916,
+  "kernel": "RealTimeKernel with pinned moscot coupling",
+  "terminal_states": {
+    "state_0": 190,
+    "state_1": 134,
+    "state_2": 7,
+    "state_3": 27,
+    "state_4": 60,
+    "state_5": 11
+  },
+  "fate_shape": [
+    429,
+    6
+  ],
+  "runtime_seconds": 10.424155400000018
+}

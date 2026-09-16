@@ -1,0 +1,9 @@
+method,explicit_comparable_direction,reason
+UOT-IOT,True,gauge-normalized signed transition-feature coefficients
+Waddington-OT,False,transport coupling without an identified signed feature coefficient
+moscot,False,transport coupling without an identified signed feature coefficient
+LineageOT,False,coupling and lineage constraints without a common signed feature coefficient
+CellRank 2,False,fate probabilities without a common signed transition-feature coefficient
+TIGON,False,neural vector field parameters are not identifiable as a common signed feature coefficient
+MIOFlow,False,neural flow parameters are not identifiable as a common signed feature coefficient
+PRESCIENT,False,potential-network weights are not identifiable as a common signed feature coefficient

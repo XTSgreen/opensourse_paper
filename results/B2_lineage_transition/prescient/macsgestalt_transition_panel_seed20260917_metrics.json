@@ -1,0 +1,9 @@
+{
+  "panel": "data/derived/macsgestalt_transition_panel.npz",
+  "artifact": "results/B2_lineage_transition/prescient/macsgestalt_transition_panel_seed20260917.npz",
+  "coupling_relative_frobenius": 0.9273143508480319,
+  "transition_weighted_l1": 0.7075988608674194,
+  "fate_pearson": 0.7463828770088128,
+  "fate_spearman": 0.6092115493554686,
+  "fate_top1_accuracy": 0.7857142857142857
+}

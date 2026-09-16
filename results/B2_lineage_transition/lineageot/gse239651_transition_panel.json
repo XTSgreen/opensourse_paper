@@ -1,0 +1,15 @@
+{
+  "method": "LineageOT",
+  "method_version": "0.2.0@6081b402074f7e5934e729e81669aef430219da8",
+  "input": "data/derived/gse239651_transition_panel.npz",
+  "output": "results/B2_lineage_transition/lineageot/gse239651_transition_panel.npz",
+  "epsilon": 0.05,
+  "seed": 20260916,
+  "adapter_input_mode": "clone_aggregate_non_nested_tree",
+  "coupling_shape": [
+    429,
+    429
+  ],
+  "coupling_total": 1.0,
+  "runtime_seconds": 0.4534699
+}

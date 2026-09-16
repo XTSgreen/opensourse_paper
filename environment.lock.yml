@@ -1,0 +1,17 @@
+name: iot-reproducibility
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13.14
+  - pip=26.1.2
+  - numpy=2.5.0
+  - pandas=3.0.3
+  - scipy=1.18.0
+  - pyyaml=6.0.3
+  - scikit-learn=1.9.0
+  - matplotlib=3.11.0
+  - pyarrow=25.0.0
+  - pytest=9.1.1
+  - pip:
+      - torch==2.13.0
+      - -e .[test]

@@ -1,0 +1,36 @@
+datasets:
+  GSE140802:
+    local_path: data/processed/GSE140802
+    local_status: packaged_preprocessed
+    biological_unit: recipient_mouse
+    modes: [retrospective_reconstruction, prospective_prediction]
+    benchmarks: [B2_lineage_transition, B3_prospective_composition]
+    velocity_layers_expected: false
+  GSE239651:
+    local_path: data/processed/GSE239651/gse239651_lineage_transition_records.csv
+    local_status: packaged_preprocessed
+    biological_unit: source_clone_family
+    modes: [retrospective_reconstruction]
+    benchmarks: [B2_lineage_transition]
+    velocity_layers_expected: false
+  GSE239651_expt1:
+    local_path: data/processed/GSE239651/gse239651_expt1_lineage_panel.parquet
+    local_status: packaged_preprocessed
+    biological_unit: source_clone_family
+    modes: [prospective_prediction]
+    benchmarks: [B3_prospective_composition]
+    locked_role: development_oof
+  GSE239651_expt2:
+    local_path: data/processed/GSE239651/gse239651_expt2_lineage_panel.parquet
+    local_status: packaged_preprocessed
+    biological_unit: source_clone_family
+    modes: [prospective_prediction]
+    benchmarks: [B3_prospective_composition]
+    locked_role: external_e1
+  macsGESTALT:
+    local_path: data/processed/GSE239651/macsgestalt_locked_transition_records.csv
+    local_status: packaged_preprocessed
+    biological_unit: clone_or_mouse
+    modes: [retrospective_reconstruction]
+    benchmarks: [B2_lineage_transition]
+    velocity_layers_expected: false

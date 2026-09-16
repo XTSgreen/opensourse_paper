@@ -1,0 +1,25 @@
+{
+  "benchmark": "B2_lineage_transition",
+  "core_external_runs": 16,
+  "core_external_success": 16,
+  "neural_external_runs": 60,
+  "neural_external_success": 60,
+  "uot_iot_runs": 20,
+  "datasets": [
+    "gse140802_t2_t16",
+    "gse140802_t2_t9",
+    "gse239651_transition_panel",
+    "macsgestalt_transition_panel"
+  ],
+  "methods": [
+    "UOT-IOT",
+    "cellrank2",
+    "lineageot",
+    "mioflow",
+    "moscot",
+    "prescient",
+    "tigon",
+    "wot"
+  ],
+  "direction_stability_scope": "UOT-IOT only; external methods do not expose a comparable signed feature direction"
+}

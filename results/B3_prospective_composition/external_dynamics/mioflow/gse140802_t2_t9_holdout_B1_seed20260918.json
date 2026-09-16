@@ -1,0 +1,16 @@
+{
+  "method": "MIOFlow",
+  "method_version": "0.1.14@36365403d0f23cc3ad1065781c7331bf81debf4e",
+  "input": "data/derived/b3/train/gse140802_t2_t9_holdout_B1.npz",
+  "initial_input": "data/derived/b3/test_input/gse140802_t2_t9_holdout_B1.npz",
+  "output": "results/B3_prospective_composition/external_dynamics/mioflow/gse140802_t2_t9_holdout_B1_seed20260918.npz",
+  "epochs": 50,
+  "hidden_dim": 32,
+  "seed": 20260918,
+  "device": "cpu",
+  "generated_shape": [
+    24,
+    7
+  ],
+  "runtime_seconds": 6.399480900001436
+}
