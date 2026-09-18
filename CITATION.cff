@@ -4,10 +4,16 @@ message: "If you use this benchmark package, please cite the associated manuscri
 type: software
 version: 0.1.0-rc1
 date-released: 2026-09-16
-repository-code: https://github.com/REPLACE_WITH_PUBLIC_REPOSITORY/iot-reproducibility
+repository-code: https://github.com/XTSgreen/opensourse_paper
 license: MIT
 authors:
-  - name: "IOT benchmark contributors"
+  - family-names: Dong
+    given-names: Han
+  - family-names: Gong
+    given-names: Yongqiang
+  - family-names: Liu
+    given-names: Yin
+    email: liuyin_tiger@outlook.com
 keywords:
   - single-cell
   - optimal transport
