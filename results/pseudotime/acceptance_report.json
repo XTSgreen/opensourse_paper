@@ -14,7 +14,9 @@
         "gse140802_t2_t16": 0.7409,
         "gse140802_t2_t9": 0.6971,
         "gse239651_transition_panel": 0.4384,
-        "macsgestalt_transition_panel": NaN
+        "macsgestalt_transition_panel": NaN,
+        "gse228154_soft": 0.3939,
+        "datasets_meeting_threshold": 0
       },
       "pass": false,
       "note": "Not met. On lineage panels the operator-derived ordering is method-dependent and UOT-IOT is not the strongest; on GSE228154 the fitted operator does not exceed a marginal-only baseline. Reported as a limitation rather than tuned away."
@@ -69,7 +71,10 @@
     "GSE228154 observation couplings use the frozen parent-project inverse-OT setup (source distribution, feature tensor, observed transition operators) instead of the initial kNN expression matching, which collapsed to the densest target state.",
     "Palantir was not installed to protect the pinned benchmark environment; the diffusion baseline is a documented DPT-style reimplementation (kNN graph, lazy diffusion, hitting times).",
     "E3 and E4 were merged into one panel table with a dataset column; the macsGESTALT panel is included as a fourth panel.",
-    "Panel state-ordering differences between methods are not interpreted: a marginal-only operator reproduces the same ordering range, so the endpoint is marginal-confounded and is retained only as a sanity check."
+    "Panel state-ordering differences between methods are not interpreted: a marginal-only operator reproduces the same ordering range, so the endpoint is marginal-confounded and is retained only as a sanity check.",
+    "E1 uses a single synthetic chain with four settings (three sample sizes plus 15% dropout), not six scenarios; the chain is the only construction with an unambiguous known progression.",
+    "E2 uses three fitter seeds and six bootstrap replicates rather than five seeds; per-run results are delivered as CSV rows with a full input-hash manifest instead of per-run JSON/NPZ files.",
+    "The A4 threshold was set to 0.3 (plan: 0.2) because the permuted-truth control has resolution 1/6 with six states; the observed failure (shuffled coupling 0.661) is unchanged by the threshold."
   ],
   "honest_reporting": true,
   "claim_supported": "The transition operator yields a stable hit-time pseudotime that recovers known ordering in synthetic chains and agrees with a diffusion baseline; on real data the ordering is moderate and does not exceed a marginal-only baseline, and direction attribution requires identifiable coefficients. Pseudotime is therefore reported as an audited relative coordinate, not as a validated ordering method."
