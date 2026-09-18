@@ -244,7 +244,7 @@ def figure_s_pseudotime() -> None:
     e3 = load("FigureS1d", "results/pseudotime/e3_panels.csv")
     e6 = load("FigureS1d", "results/pseudotime/e6_controls.csv")
     fig = plt.figure(figsize=(183 / 25.4, 150 / 25.4))
-    gs = fig.add_gridspec(2, 2, left=.15, right=.975, top=.90, bottom=.12, wspace=.55, hspace=.62)
+    gs = fig.add_gridspec(2, 2, left=.16, right=.975, top=.90, bottom=.12, wspace=.55, hspace=.62)
     a, b = fig.add_subplot(gs[0, 0]), fig.add_subplot(gs[0, 1])
     c, d = fig.add_subplot(gs[1, 0]), fig.add_subplot(gs[1, 1])
     for ax, letter in zip([a, b, c, d], "abcd"):
@@ -254,7 +254,7 @@ def figure_s_pseudotime() -> None:
         quiet = e1[e1.method.eq(method) & e1.dropout.eq(0.0)].groupby("sample_count").ordering.mean()
         a.plot(quiet.index, quiet.values, color=color, marker=marker, ms=4, lw=1.2, label=label)
         noisy = e1[e1.method.eq(method) & e1.dropout.gt(0)].ordering.mean()
-        a.scatter([2000], [noisy], facecolors="white", edgecolors=color, marker=marker, s=28, zorder=3)
+        a.scatter([2000], [noisy], facecolors="white", edgecolors=color, marker=marker, s=24, zorder=3)
     a.set_xscale("log")
     a.set_ylim(0, 1.05)
     a.set_xlabel("Sample count (log)", fontsize=7)
@@ -263,63 +263,62 @@ def figure_s_pseudotime() -> None:
     a.annotate("open: 15% dropout", (2000, 0.45), fontsize=5.6, color=rc.DARKGREY, ha="center")
     rc.grid(a)
     diagnostics = e1.groupby("method")[["direction_dispersion", "pure_column_curvature"]].mean()
-    positions = np.arange(2)
-    width = .34
-    for offset, (column, color, label) in zip([-.17, .17], [("direction_dispersion", rc.PURPLE, "Direction dispersion"),
-                                                             ("pure_column_curvature", rc.BLUE, "Pure-column curvature")]):
-        values = [diagnostics.loc["hard_ot", column], diagnostics.loc["soft_iot", column]]
-        b.bar(positions + offset, values, width=width, color=color, alpha=.85, label=label)
-        for x, value in zip(positions + offset, values):
-            b.annotate(f"{value:.3g}", (x, value), xytext=(0, 3), textcoords="offset points",
-                       ha="center", fontsize=5.6, color=color)
-    b.set_yscale("log")
-    b.set_xticks(positions, ["Hard OT", "Semi-relaxed"], fontsize=6.5)
-    b.set_ylabel("Diagnostic value (log)", fontsize=7)
-    b.legend(loc="lower center", fontsize=5.8, ncol=1)
+    for index, (method, label) in enumerate([("hard_ot", "Hard OT"), ("soft_iot", "Semi-relaxed")]):
+        for column, color, marker in [("direction_dispersion", rc.PURPLE, "o"),
+                                      ("pure_column_curvature", rc.BLUE, "s")]:
+            value = float(diagnostics.loc[method, column])
+            b.scatter(value, index, s=24, color=color, marker=marker, edgecolors="white", lw=.4, zorder=3)
+            b.annotate(f"{value:.2g}", (value, index), xytext=(4, 4), textcoords="offset points",
+                       fontsize=5.6, color=color)
+    b.set_xscale("log")
+    b.set_yticks([0, 1], ["Hard OT", "Semi-relaxed"], fontsize=6)
+    b.set_ylim(1.6, -.6)
+    b.set_xlabel("Diagnostic value (log)", fontsize=7)
+    b.legend(handles=[Line2D([], [], marker="o", ls="", color=rc.PURPLE, label="Direction dispersion"),
+                      Line2D([], [], marker="s", ls="", color=rc.BLUE, label="Pure-column curvature")],
+             loc="upper left", bbox_to_anchor=(-.02, -.22), ncol=2, fontsize=5.6, columnspacing=.8)
     rc.grid(b)
     order = ["soft_iot", "hard_ot", "frozen_uot_direction", "marginal_prevalence"]
-    labels = ["Semi-relaxed", "Hard OT", "Frozen\ndirection", "Marginal\nprevalence"]
+    labels = ["Semi-relaxed", "Hard OT", "Frozen direction", "Marginal prevalence"]
     colors = [rc.PURPLE, rc.DARKGREY, rc.BLUE, rc.ORANGE]
-    values = e2.set_index("method").loc[order, "ordering_state"].to_numpy(float)
-    aucs = e2.set_index("method").loc[order, "time_auc"].to_numpy(float)
-    c.bar(np.arange(len(order)), values, color=colors, alpha=.85)
-    for x, (value, auc) in enumerate(zip(values, aucs)):
-        c.annotate(f"ρ {value:.2f}\nAUC {auc:.2f}", (x, value), xytext=(0, 4), textcoords="offset points",
-                   ha="center", fontsize=5.8)
-    c.set_xticks(np.arange(len(order)), labels, fontsize=6)
-    c.set_ylim(0, .62)
-    c.set_ylabel("GSE228154 state ordering (ρ)", fontsize=7)
+    indexed = e2.set_index("method")
+    for index, (method, label, color) in enumerate(zip(order, labels, colors)):
+        value = float(indexed.loc[method, "ordering_state"])
+        auc = float(indexed.loc[method, "time_auc"])
+        c.plot([0, value], [index, index], color="#D0D0D0", lw=1)
+        c.scatter(value, index, s=26, color=color, edgecolors="white", lw=.4, zorder=3)
+        c.annotate(f"ρ {value:.2f} · AUC {auc:.2f}", (value, index), xytext=(5, 0),
+                   textcoords="offset points", va="center", fontsize=5.6, color=rc.DARKGREY)
+    c.axvline(0, color=rc.GREY, lw=.5, ls="--")
+    c.set_yticks(range(len(order)), labels, fontsize=6)
+    c.set_ylim(len(order) - .4, -.6)
+    c.set_xlim(-.06, .62)
+    c.set_xlabel("GSE228154 state ordering (ρ)", fontsize=7)
     rc.grid(c)
     primary_synth = float(e1[e1.method.eq("soft_iot")].ordering.mean())
-    primary_gse = float(e2[e2.method.eq("soft_iot")].iloc[0].ordering_state)
+    primary_gse = float(indexed.loc["soft_iot", "ordering_state"])
     primary_panel = float(e3[(e3.dataset.eq("gse140802_t2_t16")) & e3.method.eq("uot_iot")].ordering.mean())
     controls = e6.set_index(["dataset", "control"]).ordering.to_dict()
     groups = [
-        ("Synthetic", [("primary", primary_synth), ("permuted\ntruth", controls[("synthetic_chain", "permuted_truth")])]),
-        ("GSE228154", [("primary", primary_gse), ("shuffled\nlabels", controls[("gse228154", "shuffled_target_labels")])]),
-        ("GSE140802", [("primary", primary_panel), ("shuffled\ncoupling", controls[("gse140802_t2_t16", "shuffled_coupling")])]),
+        ("Synthetic", primary_synth, controls[("synthetic_chain", "permuted_truth")]),
+        ("GSE228154", primary_gse, controls[("gse228154", "shuffled_target_labels")]),
+        ("GSE140802", primary_panel, controls[("gse140802_t2_t16", "shuffled_coupling")]),
     ]
-    x = 0
-    xticks, xticklabels = [], []
-    for name, entries in groups:
-        start = x
-        for label, value in entries:
-            color = rc.BLUE if label == "primary" else rc.GREY
-            d.bar([x], [abs(value)], color=color, alpha=.85, width=.7)
-            d.annotate(f"{abs(value):.2f}", (x, abs(value)), xytext=(0, 3), textcoords="offset points",
-                       ha="center", fontsize=5.8)
-            xticks.append(x)
-            xticklabels.append(label)
-            x += 1
-        d.annotate(name, ((start + x - 1) / 2, 1.0), xycoords=("data", "axes fraction"),
-                   ha="center", va="top", fontsize=6)
-        x += .8
-    d.set_xticks(xticks, xticklabels, fontsize=5.8)
-    d.set_ylim(0, 1.05)
-    d.set_ylabel("|ordering| (ρ)", fontsize=7)
-    d.legend(handles=[Line2D([], [], color=rc.BLUE, lw=4, label="Primary"),
-                      Line2D([], [], color=rc.GREY, lw=4, label="Control")],
-             loc="upper right", fontsize=5.8)
+    for index, (name, primary, control) in enumerate(groups):
+        d.plot([abs(control), abs(primary)], [index, index], color="#D0D0D0", lw=1.2, zorder=1)
+        d.scatter(abs(control), index, s=26, color=rc.GREY, marker="s", edgecolors="white", lw=.4, zorder=3)
+        d.scatter(abs(primary), index, s=26, color=rc.BLUE, marker="o", edgecolors="white", lw=.4, zorder=3)
+        d.annotate(f"{abs(primary):.2f}", (abs(primary), index), xytext=(0, 6), textcoords="offset points",
+                   ha="center", fontsize=5.6, color=rc.BLUE)
+        d.annotate(f"{abs(control):.2f}", (abs(control), index), xytext=(0, -10), textcoords="offset points",
+                   ha="center", fontsize=5.6, color=rc.DARKGREY)
+    d.set_yticks(range(len(groups)), [group[0] for group in groups], fontsize=6)
+    d.set_ylim(len(groups) - .4, -.6)
+    d.set_xlim(0, 1.05)
+    d.set_xlabel("|ordering| (ρ)", fontsize=7)
+    d.legend(handles=[Line2D([], [], marker="o", ls="", color=rc.BLUE, label="Primary"),
+                      Line2D([], [], marker="s", ls="", color=rc.GREY, label="Control")],
+             loc="lower right", fontsize=5.8)
     rc.grid(d)
     rc.title(fig, "Pseudotime as an audited readout",
              [(a, "Known-truth recovery"), (b, "Attribution diagnostics"),
@@ -334,17 +333,24 @@ def figure_ed_mu_scan() -> None:
     grid = list(payload["synthetic"]["mu_grid"])
     values = list(payload["synthetic"]["dnorm"])
     working = float(payload["synthetic"]["dnorm_at_working_point"])
-    fig = plt.figure(figsize=(110 / 25.4, 80 / 25.4))
+    fig = plt.figure(figsize=(183 / 25.4, 80 / 25.4))
     ax = fig.add_subplot(111)
+    fig.subplots_adjust(left=.10, right=.975, top=.78, bottom=.20)
+    ax.axvspan(0.1, 1.0, color="#EDF3FA", zorder=0)
     ax.plot(grid, values, color=rc.BLUE, marker="o", ms=4, lw=1.2)
-    ax.scatter([0.5], [working], marker="*", s=70, color=rc.RED, zorder=3)
-    ax.annotate(f"μ = 0.5, {working:.3f}", (0.5, working), xytext=(6, 6), textcoords="offset points",
+    ax.scatter([0.5], [working], marker="D", s=26, color=rc.RED, zorder=4)
+    ax.annotate(f"μ = 0.5, {working:.3f}", (0.5, working), xytext=(7, 6), textcoords="offset points",
                 fontsize=6, color=rc.RED)
+    ax.annotate("operating interval μ = 0.1–1.0", (0.32, 0.67), fontsize=5.6, color=rc.DARKGREY)
     ax.set_xscale("log")
     ax.set_xlabel("Target-marginal penalty μ (log)", fontsize=7)
     ax.set_ylabel("Sensitivity norm", fontsize=7)
+    ax.legend(handles=[Line2D([], [], marker="o", ls="", color=rc.BLUE, label="Sensitivity norm"),
+                       Line2D([], [], marker="D", ls="", color=rc.RED, label="Working point")],
+              loc="upper right", fontsize=6)
     rc.grid(ax)
-    rc.title(fig, "Target-marginal penalty sensitivity", [])
+    rc.panel(ax, "a", dx=-.07)
+    rc.title(fig, "Target-marginal penalty sensitivity", [(ax, "Sensitivity across the penalty grid")])
     save(fig, "ED1_mu_sensitivity")
 
 
@@ -352,24 +358,25 @@ def figure_ed_calibration() -> None:
     cal = load("ED2_calibration", rc.CAL)
     order = [m for m in rc.METHODS if m in set(cal.method)]
     datasets = sorted(cal.evaluation_dataset.unique())
-    fig = plt.figure(figsize=(120 / 25.4, 85 / 25.4))
+    fig = plt.figure(figsize=(183 / 25.4, 85 / 25.4))
     ax = fig.add_subplot(111)
-    fig.subplots_adjust(left=.34, right=.98, top=.84, bottom=.16)
+    fig.subplots_adjust(left=.20, right=.975, top=.80, bottom=.24)
     for i, method in enumerate(order):
         for j, dataset in enumerate(datasets):
             row = cal[cal.method.eq(method) & cal.evaluation_dataset.eq(dataset)].iloc[0]
             y = i + (j - .5) * .22
             ax.plot([row.ci95_lower, row.ci95_upper], [y, y], color=[rc.BLUE, rc.ORANGE][j], lw=1)
-            ax.scatter(row.expected_calibration_error, y, s=22, color=[rc.BLUE, rc.ORANGE][j],
+            ax.scatter(row.expected_calibration_error, y, s=20, color=[rc.BLUE, rc.ORANGE][j],
                        marker=["o", "s"][j], edgecolors="white", lw=.4, zorder=3)
     ax.set_yticks(range(len(order)), [rc.METHODS[m] for m in order], fontsize=6)
     ax.set_ylim(len(order) - .4, -.6)
     ax.set_xlabel("State-wise calibration error ↓", fontsize=7)
     ax.legend(handles=[Line2D([], [], marker="o", ls="", color=rc.BLUE, label="GSE140802"),
                        Line2D([], [], marker="s", ls="", color=rc.ORANGE, label="GSE239651 expt2")],
-              loc="upper right", fontsize=6)
+              loc="upper left", bbox_to_anchor=(0, -.18), ncol=2, fontsize=6)
     rc.grid(ax)
-    rc.title(fig, "Calibration across external panels", [])
+    rc.panel(ax, "a", dx=-.22)
+    rc.title(fig, "Calibration across external panels", [(ax, "State-wise calibration error with 95% intervals")])
     save(fig, "ED2_calibration")
 
 
@@ -380,11 +387,11 @@ def figure_ed_biology() -> None:
     prrx1 = pd.read_csv(ROOT / prrx1_path, sep="\t")
     prrx1 = prrx1[prrx1.contrast.eq("siPRRX1_minus_siCTR")]
     fig = plt.figure(figsize=(183 / 25.4, 80 / 25.4))
-    gs = fig.add_gridspec(1, 2, left=.13, right=.975, top=.86, bottom=.18, wspace=.42)
+    gs = fig.add_gridspec(1, 2, left=.13, right=.975, top=.80, bottom=.18, wspace=.45)
     a, b = fig.add_subplot(gs[0, 0]), fig.add_subplot(gs[0, 1])
     rc.panel(a, "a", dx=-.16)
     rc.panel(b, "b", dx=-.16)
-    a.scatter(gdsc.drug, gdsc.spearman_rho, s=30, color=rc.BLUE, zorder=3)
+    a.scatter(gdsc.drug, gdsc.spearman_rho, s=24, color=rc.BLUE, zorder=3)
     a.axhline(gdsc.spearman_rho.median(), color=rc.GREY, lw=.7, ls="--")
     for _, row in gdsc.iterrows():
         a.annotate(f"n = {int(row.n_cell_lines)}", (row.drug, row.spearman_rho), xytext=(0, 5),
@@ -414,23 +421,24 @@ def figure_ed_biology() -> None:
     b.set_xlim(-1.1, 1.3)
     b.set_xlabel("siPRRX1 minus siCTR (paired difference)", fontsize=7)
     rc.grid(b)
-    rc.title(fig, "Orthogonal biology: drug sensitivity and perturbation", [])
+    rc.title(fig, "Orthogonal biology: drug sensitivity and perturbation",
+             [(a, "GDSC EGFR-TKI response"), (b, "Paired PRRX1 perturbation")])
     save(fig, "ED3_biology_orthogonal")
 
 
 def figure_ed_null_control() -> None:
     frame = load("ED5_null_control", "results/external_direction_validation/null_control.csv")
-    fig = plt.figure(figsize=(183 / 25.4, 80 / 25.4))
-    gs = fig.add_gridspec(1, 2, left=.15, right=.975, top=.84, bottom=.20, wspace=.60)
+    fig = plt.figure(figsize=(183 / 25.4, 85 / 25.4))
+    gs = fig.add_gridspec(1, 2, left=.16, right=.975, top=.80, bottom=.24, wspace=.62)
     a, b = fig.add_subplot(gs[0, 0]), fig.add_subplot(gs[0, 1])
     rc.panel(a, "a", dx=-.20)
-    rc.panel(b, "b", dx=-.16)
+    rc.panel(b, "b", dx=-.18)
     for index, row in frame.reset_index(drop=True).iterrows():
         color = rc.BLUE if row.validation_cohort == "GSE246662" else rc.ORANGE
         a.errorbar(row.observed_gain, index,
                    xerr=[[row.observed_gain - row.observed_ci_low], [row.observed_ci_high - row.observed_gain]],
                    fmt="o", color=color, ms=5, capsize=2.5, lw=1.2, zorder=3)
-        a.plot([row.gaussian_q025, row.gaussian_q975], [index, index], color=rc.GREY, lw=2.4, alpha=.6)
+        a.plot([row.gaussian_q025, row.gaussian_q975], [index, index], color=rc.GREY, lw=2.2, alpha=.6)
         a.annotate(f"P = {row.gaussian_p_two_sided:.3f}", (row.observed_ci_high, index), xytext=(5, 0),
                    textcoords="offset points", va="center", fontsize=5.6, color=rc.DARKGREY)
     a.axvline(0, color=rc.GREY, lw=.5, ls="--")
@@ -441,29 +449,31 @@ def figure_ed_null_control() -> None:
     a.set_xlim(-.005, .095)
     a.legend(handles=[Line2D([], [], marker="o", ls="", color=rc.BLUE, label="GSE246662"),
                       Line2D([], [], marker="o", ls="", color=rc.ORANGE, label="GSE183904"),
-                      Line2D([], [], color=rc.GREY, lw=2.4, alpha=.6, label="Gaussian null\n(95% range)")],
-             loc="lower right", fontsize=5.6)
+                      Line2D([], [], color=rc.GREY, lw=2.2, alpha=.6, label="Gaussian null (95% range)")],
+             loc="upper left", bbox_to_anchor=(-.02, -.20), ncol=3, fontsize=5.6, columnspacing=.8)
     rc.grid(a)
-    families = {
-        "Observed": (frame.observed_gain, rc.PURPLE),
-        "Gaussian\nnull": (frame.gaussian_mean, rc.DARKGREY),
-        "Permuted\nnull": (frame.permuted_mean, rc.GREY),
-        "Reversed": (frame.negated_gain, rc.RED),
-        "Zero": (frame.zero_direction_gain, rc.BLACK),
-    }
-    names = list(families)
-    values = [float(families[name][0].mean()) for name in names]
-    errors = [float(families[name][0].std()) for name in names]
-    b.bar(np.arange(len(names)), values, yerr=errors, capsize=3,
-          color=[families[name][1] for name in names], alpha=.85)
-    b.axhline(0, color=rc.GREY, lw=.5, ls="--")
-    b.set_xticks(np.arange(len(names)), names, fontsize=5.8)
-    b.set_ylabel("Gain over independence (MAE)", fontsize=7)
-    b.set_ylim(-.03, .075)
-    b.annotate("joint P = 0.0099\n(0/100 all-positive\nfor the Gaussian null)", (.02, .97),
-               xycoords="axes fraction", va="top", fontsize=5.6, color=rc.DARKGREY)
+    families = [("Observed", frame.observed_gain, rc.PURPLE),
+                ("Gaussian null", frame.gaussian_mean, rc.DARKGREY),
+                ("Permuted null", frame.permuted_mean, rc.GREY),
+                ("Reversed", frame.negated_gain, rc.RED),
+                ("Zero", frame.zero_direction_gain, rc.BLACK)]
+    for index, (label, series, color) in enumerate(families):
+        mean = float(series.mean())
+        spread = float(series.std())
+        b.plot([mean - spread, mean + spread], [index, index], color=color, lw=1.4)
+        b.scatter(mean, index, s=24, color=color, edgecolors="white", lw=.4, zorder=3)
+        b.annotate(f"{mean:+.3f}", (mean + spread, index), xytext=(5, 0), textcoords="offset points",
+                   va="center", fontsize=5.6, color=color)
+    b.axvline(0, color=rc.GREY, lw=.5, ls="--")
+    b.set_yticks(range(len(families)), [item[0] for item in families], fontsize=6)
+    b.set_ylim(len(families) - .4, -.6)
+    b.set_xlim(-.035, .085)
+    b.set_xlabel("Gain over independence (MAE)", fontsize=7)
+    b.annotate("joint P = 0.0099\n(0/100 all-positive)", (.98, .04), xycoords="axes fraction",
+               ha="right", va="bottom", fontsize=5.6, color=rc.DARKGREY)
     rc.grid(b)
-    rc.title(fig, "External-direction null control", [])
+    rc.title(fig, "External-direction null control",
+             [(a, "Frozen gain versus null range"), (b, "Direction families across sites")])
     save(fig, "ED5_external_null_control")
 
 
