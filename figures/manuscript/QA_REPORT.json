@@ -50,6 +50,42 @@
       ],
       "width_mm": 183.0,
       "height_mm": 150.0
+    },
+    {
+      "figure": "ED1_mu_sensitivity",
+      "content_fits_canvas": true,
+      "bounds_inches": [
+        0.1473200279896654,
+        -0.008022202485919757,
+        3.750317767285926,
+        3.126132438706392
+      ],
+      "width_mm": 110.0,
+      "height_mm": 80.0
+    },
+    {
+      "figure": "ED2_calibration",
+      "content_fits_canvas": true,
+      "bounds_inches": [
+        0.7790769903762031,
+        0.1996965799807252,
+        3.850844269466317,
+        3.113295546003527
+      ],
+      "width_mm": 120.0,
+      "height_mm": 85.0
+    },
+    {
+      "figure": "ED3_biology_orthogonal",
+      "content_fits_canvas": true,
+      "bounds_inches": [
+        0.48259561854084637,
+        0.23166980226104572,
+        6.542010680671753,
+        2.8864404339594265
+      ],
+      "width_mm": 183.0,
+      "height_mm": 80.0
     }
   ]
 }

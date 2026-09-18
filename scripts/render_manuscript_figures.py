@@ -327,23 +327,129 @@ def figure_s_pseudotime() -> None:
     save(fig, "FigureS_pseudotime")
 
 
+def figure_ed_mu_scan() -> None:
+    path = "../output/22_m7_uot_identifiability/m7_results.json"
+    SOURCES.setdefault("ED1_mu_scan", set()).add(path)
+    payload = json.loads((ROOT / path).read_text(encoding="utf-8"))
+    grid = list(payload["synthetic"]["mu_grid"])
+    values = list(payload["synthetic"]["dnorm"])
+    working = float(payload["synthetic"]["dnorm_at_working_point"])
+    fig = plt.figure(figsize=(110 / 25.4, 80 / 25.4))
+    ax = fig.add_subplot(111)
+    ax.plot(grid, values, color=rc.BLUE, marker="o", ms=4, lw=1.2)
+    ax.scatter([0.5], [working], marker="*", s=70, color=rc.RED, zorder=3)
+    ax.annotate(f"μ = 0.5, {working:.3f}", (0.5, working), xytext=(6, 6), textcoords="offset points",
+                fontsize=6, color=rc.RED)
+    ax.set_xscale("log")
+    ax.set_xlabel("Target-marginal penalty μ (log)", fontsize=7)
+    ax.set_ylabel("Sensitivity norm", fontsize=7)
+    rc.grid(ax)
+    rc.title(fig, "Target-marginal penalty sensitivity", [])
+    save(fig, "ED1_mu_sensitivity")
+
+
+def figure_ed_calibration() -> None:
+    cal = load("ED2_calibration", rc.CAL)
+    order = [m for m in rc.METHODS if m in set(cal.method)]
+    datasets = sorted(cal.evaluation_dataset.unique())
+    fig = plt.figure(figsize=(120 / 25.4, 85 / 25.4))
+    ax = fig.add_subplot(111)
+    fig.subplots_adjust(left=.34, right=.98, top=.84, bottom=.16)
+    for i, method in enumerate(order):
+        for j, dataset in enumerate(datasets):
+            row = cal[cal.method.eq(method) & cal.evaluation_dataset.eq(dataset)].iloc[0]
+            y = i + (j - .5) * .22
+            ax.plot([row.ci95_lower, row.ci95_upper], [y, y], color=[rc.BLUE, rc.ORANGE][j], lw=1)
+            ax.scatter(row.expected_calibration_error, y, s=22, color=[rc.BLUE, rc.ORANGE][j],
+                       marker=["o", "s"][j], edgecolors="white", lw=.4, zorder=3)
+    ax.set_yticks(range(len(order)), [rc.METHODS[m] for m in order], fontsize=6)
+    ax.set_ylim(len(order) - .4, -.6)
+    ax.set_xlabel("State-wise calibration error ↓", fontsize=7)
+    ax.legend(handles=[Line2D([], [], marker="o", ls="", color=rc.BLUE, label="GSE140802"),
+                       Line2D([], [], marker="s", ls="", color=rc.ORANGE, label="GSE239651 expt2")],
+              loc="upper right", fontsize=6)
+    rc.grid(ax)
+    rc.title(fig, "Calibration across external panels", [])
+    save(fig, "ED2_calibration")
+
+
+def figure_ed_biology() -> None:
+    gdsc = load("ED3_gdsc", f"{LEGACY}/Fig4d_gdsc_egfr_tki.csv")
+    prrx1_path = "figures/legacy_v5/perturbation/gse164488_prrx1_perturbation_effects.tsv"
+    SOURCES.setdefault("ED3_prrx1", set()).add(prrx1_path)
+    prrx1 = pd.read_csv(ROOT / prrx1_path, sep="\t")
+    prrx1 = prrx1[prrx1.contrast.eq("siPRRX1_minus_siCTR")]
+    fig = plt.figure(figsize=(183 / 25.4, 80 / 25.4))
+    gs = fig.add_gridspec(1, 2, left=.13, right=.975, top=.86, bottom=.18, wspace=.42)
+    a, b = fig.add_subplot(gs[0, 0]), fig.add_subplot(gs[0, 1])
+    rc.panel(a, "a", dx=-.16)
+    rc.panel(b, "b", dx=-.16)
+    a.scatter(gdsc.drug, gdsc.spearman_rho, s=30, color=rc.BLUE, zorder=3)
+    a.axhline(gdsc.spearman_rho.median(), color=rc.GREY, lw=.7, ls="--")
+    for _, row in gdsc.iterrows():
+        a.annotate(f"n = {int(row.n_cell_lines)}", (row.drug, row.spearman_rho), xytext=(0, 5),
+                   textcoords="offset points", ha="center", fontsize=5.6, color=rc.DARKGREY)
+    a.set_ylim(0, .4)
+    a.set_ylabel("Spearman ρ (EMT vs ln IC50)", fontsize=7)
+    a.tick_params(axis="x", labelsize=6)
+    rc.grid(a)
+    branches = ["EPI", "INV_EMT", "INF_EMT", "IFN_HLA", "PROLIF", "DORM_STRESS"]
+    labels = ["Epithelial", "Invasive EMT", "Inflammatory EMT", "IFN/HLA", "Proliferation", "Dormancy/stress"]
+    part = prrx1.set_index("branch").loc[branches]
+    tcrit = 4.302652729911275
+    for i, branch in enumerate(branches):
+        row = part.loc[branch]
+        se = abs(row.mean_difference_a_minus_b / row.paired_t) if row.paired_t else 0.0
+        low, high = row.mean_difference_a_minus_b - tcrit * se, row.mean_difference_a_minus_b + tcrit * se
+        color = rc.BLUE if branch == "EPI" else rc.GREY
+        b.plot([low, high], [i, i], color=color, lw=1)
+        filled = bool(row.paired_p < .05)
+        b.scatter(row.mean_difference_a_minus_b, i, s=22, zorder=3,
+                  color=color if filled else "white", edgecolors=color, lw=.8)
+        b.annotate(f"P = {row.paired_p:.3g}", (high, i), xytext=(5, 0), textcoords="offset points",
+                   va="center", fontsize=5.6, color=color)
+    b.axvline(0, color=rc.GREY, lw=.5, ls="--")
+    b.set_yticks(range(len(branches)), labels, fontsize=6)
+    b.invert_yaxis()
+    b.set_xlim(-1.1, 1.3)
+    b.set_xlabel("siPRRX1 minus siCTR (paired difference)", fontsize=7)
+    rc.grid(b)
+    rc.title(fig, "Orthogonal biology: drug sensitivity and perturbation", [])
+    save(fig, "ED3_biology_orthogonal")
+
+
+def output_name(panel: str) -> str:
+    mapping = {
+        "Figure3": "Figure3", "Figure4": "Figure4", "Figure5": "Figure5",
+        "FigureS": "FigureS_pseudotime", "ED1": "ED1_mu_sensitivity",
+        "ED2": "ED2_calibration", "ED3": "ED3_biology_orthogonal",
+    }
+    for prefix, name in mapping.items():
+        if panel.startswith(prefix):
+            return name
+    raise KeyError(panel)
+
+
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
     figure3()
     figure4()
     figure5()
     figure_s_pseudotime()
+    figure_ed_mu_scan()
+    figure_ed_calibration()
+    figure_ed_biology()
     records = []
     for panel, paths in sorted(SOURCES.items()):
-        figure = panel.split("Figure", 1)[1].split("_", 1)[0]
+        figure = output_name(panel)
         for path in sorted(paths):
             records.append({
                 "figure_panel": panel,
                 "script": "scripts/render_manuscript_figures.py",
                 "input": path,
                 "input_sha256": hashlib.sha256((ROOT / path).read_bytes()).hexdigest(),
-                "output_pdf": f"figures/manuscript/Figure{figure}.pdf",
-                "output_png": f"figures/manuscript/Figure{figure}.png",
+                "output_pdf": f"figures/manuscript/{figure}.pdf",
+                "output_png": f"figures/manuscript/{figure}.png",
             })
     pd.DataFrame(records).to_csv(OUT / "source_manifest.csv", index=False)
     report = {"style_reference": "figures_revision_v5 + technical_route_v6",
