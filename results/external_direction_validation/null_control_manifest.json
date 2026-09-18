@@ -1,0 +1,24 @@
+{
+  "control": "matched-norm null directions and weak permutation null under a paired bootstrap",
+  "claim_scope": "the frozen-direction gain is specific to the learned direction, not to the baseline",
+  "primary_null": "matched-norm Gaussian direction (100 draws)",
+  "weak_null": "coefficient permutation (100 draws) retains a small positive gain because cost features are redundant",
+  "reference_controls": [
+    "reversed direction",
+    "zero direction"
+  ],
+  "protocol": "paired bootstrap with identical resampling draws for the observed direction and all null directions; B bootstrap replicates per site; gain = MAE_base - MAE_rec",
+  "joint": {
+    "sites": 6,
+    "observed_all_positive": true,
+    "observed_positive_count": 6,
+    "permuted_all_positive_fraction": 1.0,
+    "gaussian_all_positive_fraction": 0.0,
+    "permuted_joint_p": 1.0,
+    "gaussian_joint_p": 0.009900990099009901
+  },
+  "n_sites": 6,
+  "source": "output/transfer_08_generalization/output/external_direction_null_control.json",
+  "source_sha256": "d30bf6f60d90060c696d60c464f12f43de0de563daf644f7b65d3a13c886698a",
+  "output": "results/external_direction_validation/null_control.csv"
+}

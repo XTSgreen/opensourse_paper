@@ -418,11 +418,61 @@ def figure_ed_biology() -> None:
     save(fig, "ED3_biology_orthogonal")
 
 
+def figure_ed_null_control() -> None:
+    frame = load("ED5_null_control", "results/external_direction_validation/null_control.csv")
+    fig = plt.figure(figsize=(183 / 25.4, 80 / 25.4))
+    gs = fig.add_gridspec(1, 2, left=.15, right=.975, top=.84, bottom=.20, wspace=.60)
+    a, b = fig.add_subplot(gs[0, 0]), fig.add_subplot(gs[0, 1])
+    rc.panel(a, "a", dx=-.20)
+    rc.panel(b, "b", dx=-.16)
+    for index, row in frame.reset_index(drop=True).iterrows():
+        color = rc.BLUE if row.validation_cohort == "GSE246662" else rc.ORANGE
+        a.errorbar(row.observed_gain, index,
+                   xerr=[[row.observed_gain - row.observed_ci_low], [row.observed_ci_high - row.observed_gain]],
+                   fmt="o", color=color, ms=5, capsize=2.5, lw=1.2, zorder=3)
+        a.plot([row.gaussian_q025, row.gaussian_q975], [index, index], color=rc.GREY, lw=2.4, alpha=.6)
+        a.annotate(f"P = {row.gaussian_p_two_sided:.3f}", (row.observed_ci_high, index), xytext=(5, 0),
+                   textcoords="offset points", va="center", fontsize=5.6, color=rc.DARKGREY)
+    a.axvline(0, color=rc.GREY, lw=.5, ls="--")
+    a.set_yticks(range(len(frame)),
+                 [f"{row.validation_cohort} {row.site}" for _, row in frame.iterrows()], fontsize=5.8)
+    a.invert_yaxis()
+    a.set_xlabel("Gain over independence (MAE)", fontsize=7)
+    a.set_xlim(-.005, .095)
+    a.legend(handles=[Line2D([], [], marker="o", ls="", color=rc.BLUE, label="GSE246662"),
+                      Line2D([], [], marker="o", ls="", color=rc.ORANGE, label="GSE183904"),
+                      Line2D([], [], color=rc.GREY, lw=2.4, alpha=.6, label="Gaussian null\n(95% range)")],
+             loc="lower right", fontsize=5.6)
+    rc.grid(a)
+    families = {
+        "Observed": (frame.observed_gain, rc.PURPLE),
+        "Gaussian\nnull": (frame.gaussian_mean, rc.DARKGREY),
+        "Permuted\nnull": (frame.permuted_mean, rc.GREY),
+        "Reversed": (frame.negated_gain, rc.RED),
+        "Zero": (frame.zero_direction_gain, rc.BLACK),
+    }
+    names = list(families)
+    values = [float(families[name][0].mean()) for name in names]
+    errors = [float(families[name][0].std()) for name in names]
+    b.bar(np.arange(len(names)), values, yerr=errors, capsize=3,
+          color=[families[name][1] for name in names], alpha=.85)
+    b.axhline(0, color=rc.GREY, lw=.5, ls="--")
+    b.set_xticks(np.arange(len(names)), names, fontsize=5.8)
+    b.set_ylabel("Gain over independence (MAE)", fontsize=7)
+    b.set_ylim(-.03, .075)
+    b.annotate("joint P = 0.0099\n(0/100 all-positive\nfor the Gaussian null)", (.02, .97),
+               xycoords="axes fraction", va="top", fontsize=5.6, color=rc.DARKGREY)
+    rc.grid(b)
+    rc.title(fig, "External-direction null control", [])
+    save(fig, "ED5_external_null_control")
+
+
 def output_name(panel: str) -> str:
     mapping = {
         "Figure3": "Figure3", "Figure4": "Figure4", "Figure5": "Figure5",
         "FigureS": "FigureS_pseudotime", "ED1": "ED1_mu_sensitivity",
         "ED2": "ED2_calibration", "ED3": "ED3_biology_orthogonal",
+        "ED5": "ED5_external_null_control",
     }
     for prefix, name in mapping.items():
         if panel.startswith(prefix):
@@ -439,6 +489,7 @@ def main() -> int:
     figure_ed_mu_scan()
     figure_ed_calibration()
     figure_ed_biology()
+    figure_ed_null_control()
     records = []
     for panel, paths in sorted(SOURCES.items()):
         figure = output_name(panel)
