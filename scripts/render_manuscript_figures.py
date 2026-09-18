@@ -238,11 +238,101 @@ def figure5() -> None:
     save(fig, "Figure5")
 
 
+def figure_s_pseudotime() -> None:
+    e1 = load("FigureS1a", "results/pseudotime/e1_synthetic.csv")
+    e2 = load("FigureS1c", "results/pseudotime/e2_gse228154.csv")
+    e3 = load("FigureS1d", "results/pseudotime/e3_panels.csv")
+    e6 = load("FigureS1d", "results/pseudotime/e6_controls.csv")
+    fig = plt.figure(figsize=(183 / 25.4, 150 / 25.4))
+    gs = fig.add_gridspec(2, 2, left=.15, right=.975, top=.90, bottom=.12, wspace=.55, hspace=.62)
+    a, b = fig.add_subplot(gs[0, 0]), fig.add_subplot(gs[0, 1])
+    c, d = fig.add_subplot(gs[1, 0]), fig.add_subplot(gs[1, 1])
+    for ax, letter in zip([a, b, c, d], "abcd"):
+        rc.panel(ax, letter, dx=-.18)
+    for method, color, marker, label in [("soft_iot", rc.BLUE, "o", "Semi-relaxed"),
+                                         ("hard_ot", rc.DARKGREY, "s", "Hard OT")]:
+        quiet = e1[e1.method.eq(method) & e1.dropout.eq(0.0)].groupby("sample_count").ordering.mean()
+        a.plot(quiet.index, quiet.values, color=color, marker=marker, ms=4, lw=1.2, label=label)
+        noisy = e1[e1.method.eq(method) & e1.dropout.gt(0)].ordering.mean()
+        a.scatter([2000], [noisy], facecolors="white", edgecolors=color, marker=marker, s=28, zorder=3)
+    a.set_xscale("log")
+    a.set_ylim(0, 1.05)
+    a.set_xlabel("Sample count (log)", fontsize=7)
+    a.set_ylabel("Known-truth ordering (ρ)", fontsize=7)
+    a.legend(loc="lower right", fontsize=6)
+    a.annotate("open: 15% dropout", (2000, 0.45), fontsize=5.6, color=rc.DARKGREY, ha="center")
+    rc.grid(a)
+    diagnostics = e1.groupby("method")[["direction_dispersion", "pure_column_curvature"]].mean()
+    positions = np.arange(2)
+    width = .34
+    for offset, (column, color, label) in zip([-.17, .17], [("direction_dispersion", rc.PURPLE, "Direction dispersion"),
+                                                             ("pure_column_curvature", rc.BLUE, "Pure-column curvature")]):
+        values = [diagnostics.loc["hard_ot", column], diagnostics.loc["soft_iot", column]]
+        b.bar(positions + offset, values, width=width, color=color, alpha=.85, label=label)
+        for x, value in zip(positions + offset, values):
+            b.annotate(f"{value:.3g}", (x, value), xytext=(0, 3), textcoords="offset points",
+                       ha="center", fontsize=5.6, color=color)
+    b.set_yscale("log")
+    b.set_xticks(positions, ["Hard OT", "Semi-relaxed"], fontsize=6.5)
+    b.set_ylabel("Diagnostic value (log)", fontsize=7)
+    b.legend(loc="lower center", fontsize=5.8, ncol=1)
+    rc.grid(b)
+    order = ["soft_iot", "hard_ot", "frozen_uot_direction", "marginal_prevalence"]
+    labels = ["Semi-relaxed", "Hard OT", "Frozen\ndirection", "Marginal\nprevalence"]
+    colors = [rc.PURPLE, rc.DARKGREY, rc.BLUE, rc.ORANGE]
+    values = e2.set_index("method").loc[order, "ordering_state"].to_numpy(float)
+    aucs = e2.set_index("method").loc[order, "time_auc"].to_numpy(float)
+    c.bar(np.arange(len(order)), values, color=colors, alpha=.85)
+    for x, (value, auc) in enumerate(zip(values, aucs)):
+        c.annotate(f"ρ {value:.2f}\nAUC {auc:.2f}", (x, value), xytext=(0, 4), textcoords="offset points",
+                   ha="center", fontsize=5.8)
+    c.set_xticks(np.arange(len(order)), labels, fontsize=6)
+    c.set_ylim(0, .62)
+    c.set_ylabel("GSE228154 state ordering (ρ)", fontsize=7)
+    rc.grid(c)
+    primary_synth = float(e1[e1.method.eq("soft_iot")].ordering.mean())
+    primary_gse = float(e2[e2.method.eq("soft_iot")].iloc[0].ordering_state)
+    primary_panel = float(e3[(e3.dataset.eq("gse140802_t2_t16")) & e3.method.eq("uot_iot")].ordering.mean())
+    controls = e6.set_index(["dataset", "control"]).ordering.to_dict()
+    groups = [
+        ("Synthetic", [("primary", primary_synth), ("permuted\ntruth", controls[("synthetic_chain", "permuted_truth")])]),
+        ("GSE228154", [("primary", primary_gse), ("shuffled\nlabels", controls[("gse228154", "shuffled_target_labels")])]),
+        ("GSE140802", [("primary", primary_panel), ("shuffled\ncoupling", controls[("gse140802_t2_t16", "shuffled_coupling")])]),
+    ]
+    x = 0
+    xticks, xticklabels = [], []
+    for name, entries in groups:
+        start = x
+        for label, value in entries:
+            color = rc.BLUE if label == "primary" else rc.GREY
+            d.bar([x], [abs(value)], color=color, alpha=.85, width=.7)
+            d.annotate(f"{abs(value):.2f}", (x, abs(value)), xytext=(0, 3), textcoords="offset points",
+                       ha="center", fontsize=5.8)
+            xticks.append(x)
+            xticklabels.append(label)
+            x += 1
+        d.annotate(name, ((start + x - 1) / 2, 1.0), xycoords=("data", "axes fraction"),
+                   ha="center", va="top", fontsize=6)
+        x += .8
+    d.set_xticks(xticks, xticklabels, fontsize=5.8)
+    d.set_ylim(0, 1.05)
+    d.set_ylabel("|ordering| (ρ)", fontsize=7)
+    d.legend(handles=[Line2D([], [], color=rc.BLUE, lw=4, label="Primary"),
+                      Line2D([], [], color=rc.GREY, lw=4, label="Control")],
+             loc="upper right", fontsize=5.8)
+    rc.grid(d)
+    rc.title(fig, "Pseudotime as an audited readout",
+             [(a, "Known-truth recovery"), (b, "Attribution diagnostics"),
+              (c, "Real-data ordering versus marginal baseline"), (d, "Negative controls")])
+    save(fig, "FigureS_pseudotime")
+
+
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
     figure3()
     figure4()
     figure5()
+    figure_s_pseudotime()
     records = []
     for panel, paths in sorted(SOURCES.items()):
         figure = panel.split("Figure", 1)[1].split("_", 1)[0]

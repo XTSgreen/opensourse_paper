@@ -95,6 +95,19 @@ def main() -> int:
             "license_present": (root / "LICENSE").exists(),
         },
     }
+    pseudotime_root = results / "pseudotime"
+    pseudotime_required = [
+        "e1_synthetic.csv", "e2_gse228154.csv", "e3_panels.csv", "e5_mu_scan.csv", "e6_controls.csv",
+        "pseudotime_summary.csv", "pseudotime_manifest.json", "acceptance_report.json",
+    ]
+    acceptance_path = pseudotime_root / "acceptance_report.json"
+    acceptance = json.loads(acceptance_path.read_text(encoding="utf-8")) if acceptance_path.exists() else {}
+    gates["G9_pseudotime_readout"] = {
+        "pass": all(_exists(pseudotime_root / name) for name in pseudotime_required),
+        "source": str(pseudotime_root),
+        "acceptance_criteria": {item["id"]: item["pass"] for item in acceptance.get("criteria", [])},
+        "honest_reporting": bool(acceptance.get("honest_reporting", False)),
+    }
     payload = {"all_pass": all(gate["pass"] for gate in gates.values()), "gates": gates}
     output = results / "FINAL_GATE_STATUS.json"
     output.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")

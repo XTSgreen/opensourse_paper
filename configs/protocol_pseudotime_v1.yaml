@@ -1,0 +1,52 @@
+protocol_version: "1.1.0-pseudotime"
+protocol_frozen: true
+extends: configs/protocol_v1.yaml
+parent_protocol_sha256: 1b2ee2ca7f35d1980e708de5bca1edc0d0960259a7f62e9d619a611cecc24be7
+scope: >
+  Extension addendum that defines the pseudotime readout evaluation for the transition operator.
+  It does not modify the frozen v1.0.0 benchmarks, information boundaries or gates G1-G8.
+readout_definition: >
+  Row-normalise a state-level transition operator, fix a root state, and compute expected random-walk
+  hitting times to the root as a relative pseudotime coordinate.
+datasets:
+  synthetic_chain:
+    generator: src/iot_benchmark/pseudotime.py::chain_case
+    known_truth: latent state progression
+    settings:
+      sample_counts: [400, 2000, 10000]
+      dropout: [0.0, 0.15]
+  gse228154:
+    observation: data/derived/pseudotime/gse228154_inverse_ot.npz
+    origin: frozen parent-project inverse-OT preparation (source distribution, feature tensor, observed transition operators)
+    time_order: [D0, D3, D6, D9]
+  lineage_panels: [gse140802_t2_t16, gse140802_t2_t9, gse239651_transition_panel, macsgestalt_transition_panel]
+baselines:
+  marginal_prevalence: state target-time prevalence, higher mass marked as later
+  dpt_style: kNN diffusion pseudotime (k=15, lazy alpha=0.5, hitting times to root)
+seeds: [20260916, 20260917, 20260918, 20260919, 20260920]
+mu_grid: [0.05, 0.1, 0.2, 0.5, 1.0, 2.0, 5.0]
+endpoints:
+  primary: state-level pseudotime ordering against temporal information (Spearman rho)
+  stability: pairwise ordering across restarts, seeds and leave-one-site-out / unit jackknife
+  controls: permuted truth, shuffled target labels, shuffled coupling, random root (sensitivity)
+acceptance:
+  A1_synthetic_recovery: "semi-relaxed state ordering >= 0.9 on the known-truth chain"
+  A1_real_state_ordering: "state ordering >= 0.8 in at least four of five real datasets"
+  A2_marginal_baseline: "fitted operator exceeds marginal-prevalence baseline in ordering and time-separation AUC"
+  A3_diffusion_baseline_agreement: "agreement with the diffusion-pseudotime baseline >= 0.7"
+  A4_negative_controls: "|ordering| <= 0.3 for label and operator shuffle controls"
+gates:
+  G9_pseudotime_readout:
+    description: >
+      Completeness gate for the pseudotime extension: all experiment tables, the summary, the input
+      manifest and the acceptance report must exist. Acceptance results are reported as observed and
+      are not a publication gate by themselves.
+    required_artifacts:
+      - results/pseudotime/e1_synthetic.csv
+      - results/pseudotime/e2_gse228154.csv
+      - results/pseudotime/e3_panels.csv
+      - results/pseudotime/e5_mu_scan.csv
+      - results/pseudotime/e6_controls.csv
+      - results/pseudotime/pseudotime_summary.csv
+      - results/pseudotime/pseudotime_manifest.json
+      - results/pseudotime/acceptance_report.json

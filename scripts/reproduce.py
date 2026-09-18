@@ -78,7 +78,15 @@ def benchmarks() -> None:
 def outputs() -> None:
     _run([sys.executable, "scripts/normalize_packaged_paths.py"], log_name="05_normalize_packaged_paths")
     _run([sys.executable, "scripts/audit_public_models.py"], log_name="05_audit_public_models")
+    pseudotime_data = ROOT / "data" / "derived" / "pseudotime" / "gse228154_inverse_ot.npz"
+    if not pseudotime_data.exists():
+        _run([sys.executable, "scripts/import_pseudotime_gse228154.py"], log_name="05_import_pseudotime")
+    else:
+        _run([sys.executable, "-c", "print('packaged pseudotime derivation detected; import is reproducibly skipped')"], log_name="05_import_pseudotime_packaged")
+    _run([sys.executable, "scripts/run_pseudotime.py"], log_name="05_pseudotime")
+    _run([sys.executable, "scripts/analyze_pseudotime.py"], log_name="05_pseudotime_analysis")
     _run([sys.executable, "scripts/render_figures.py"], log_name="05_figures_1_to_5")
+    _run([sys.executable, "scripts/render_manuscript_figures.py"], log_name="05_manuscript_figures")
     _run([sys.executable, "scripts/build_reviewer_tables.py"], log_name="05_reviewer_tables")
     _run([sys.executable, "scripts/verify_release.py"], log_name="05_verify_release", allow_nonzero=True)
     _run([sys.executable, "scripts/normalize_packaged_paths.py"], log_name="05_finalize_portable_paths")

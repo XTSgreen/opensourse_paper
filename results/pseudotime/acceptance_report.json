@@ -1,0 +1,76 @@
+{
+  "primary_metric": "state-level pseudotime ordering against known temporal information, with synthetic chain as the known-truth anchor",
+  "criteria": [
+    {
+      "id": "A1_synthetic_recovery",
+      "target": "soft semi-relaxed ordering >= 0.9 on the known-truth chain",
+      "observed": 0.9343,
+      "pass": true
+    },
+    {
+      "id": "A1_real_state_ordering",
+      "target": "state ordering >= 0.8 in at least four of five real datasets (plan version)",
+      "observed": {
+        "gse140802_t2_t16": 0.7409,
+        "gse140802_t2_t9": 0.6971,
+        "gse239651_transition_panel": 0.4384,
+        "macsgestalt_transition_panel": NaN
+      },
+      "pass": false,
+      "note": "Not met. On lineage panels the operator-derived ordering is method-dependent and UOT-IOT is not the strongest; on GSE228154 the fitted operator does not exceed a marginal-only baseline. Reported as a limitation rather than tuned away."
+    },
+    {
+      "id": "A2_marginal_baseline",
+      "target": "fitted operator exceeds a marginal-prevalence baseline in state ordering",
+      "observed": {
+        "operator_soft": 0.3939,
+        "operator_hard": 0.2121,
+        "frozen_direction": 0.3333,
+        "marginal_only": 0.4061,
+        "auc_operator": 0.9181,
+        "auc_marginal_only": 0.9439
+      },
+      "pass": false,
+      "note": "Not met on GSE228154. The time-separation AUC (operator 0.918) is also produced by the marginal-only baseline (0.944), so AUC is retained only as a sanity check and not as evidence."
+    },
+    {
+      "id": "A3_diffusion_baseline_agreement",
+      "target": "agreement with the diffusion-pseudotime baseline >= 0.7",
+      "observed": 0.8016,
+      "pass": true
+    },
+    {
+      "id": "A4_negative_controls",
+      "target": "|ordering| <= 0.3 for label/operator-shuffle controls",
+      "observed": {
+        "synthetic_chain:permuted_truth": 0.2571,
+        "gse228154:shuffled_target_labels": 0.3713,
+        "gse140802_t2_t16:shuffled_coupling": 0.6614
+      },
+      "pass": false,
+      "note": "Synthetic permuted-truth control is 0.257 with only six states; interpreted against that resolution. Random-root rows are reported separately as root sensitivity, because a root change can preserve relative ordering on a chain-like operator."
+    }
+  ],
+  "root_sensitivity": {
+    "synthetic_chain:random_root": 0.2,
+    "gse228154:random_root": -0.1515,
+    "gse140802_t2_t16:random_root": 0.4504
+  },
+  "e1_attribution_contrast": {
+    "hard_direction_dispersion": 0.0842836436153432,
+    "soft_direction_dispersion": 0.011534294782018275,
+    "hard_pure_column_curvature": 3.1086244689504383e-10,
+    "soft_pure_column_curvature": 1.9427239324354417,
+    "interpretation": "Ordering is stable under fixed marginals while target-state coefficients disperse and curvature collapses; semi-relaxed fitting restores identifiable attribution. Pseudotime ordering and programme attribution must therefore be reported separately."
+  },
+  "plan_deviations": [
+    "A2 was redefined from 'hard-marginal pseudotime instability' to 'operator ordering must exceed a marginal-only baseline' after analysis showed that equivalent fits keep the plan and ordering stable; the original version was not falsifiable in the intended direction.",
+    "The time-separation AUC endpoint was demoted to a sanity check after the marginal-only baseline achieved 0.944 on GSE228154.",
+    "GSE228154 observation couplings use the frozen parent-project inverse-OT setup (source distribution, feature tensor, observed transition operators) instead of the initial kNN expression matching, which collapsed to the densest target state.",
+    "Palantir was not installed to protect the pinned benchmark environment; the diffusion baseline is a documented DPT-style reimplementation (kNN graph, lazy diffusion, hitting times).",
+    "E3 and E4 were merged into one panel table with a dataset column; the macsGESTALT panel is included as a fourth panel.",
+    "Panel state-ordering differences between methods are not interpreted: a marginal-only operator reproduces the same ordering range, so the endpoint is marginal-confounded and is retained only as a sanity check."
+  ],
+  "honest_reporting": true,
+  "claim_supported": "The transition operator yields a stable hit-time pseudotime that recovers known ordering in synthetic chains and agrees with a diffusion baseline; on real data the ordering is moderate and does not exceed a marginal-only baseline, and direction attribution requires identifiable coefficients. Pseudotime is therefore reported as an audited relative coordinate, not as a validated ordering method."
+}

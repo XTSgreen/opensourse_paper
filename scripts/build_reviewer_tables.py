@@ -238,6 +238,9 @@ def main() -> int:
     figure_manifest = output / "figure_source_manifest.csv"
     if figure_manifest.exists():
         pd.read_csv(figure_manifest).to_csv(output / "table_S7_figure_sources.csv", index=False)
+    pseudotime_summary = root / "results" / "pseudotime" / "pseudotime_summary.csv"
+    if pseudotime_summary.exists():
+        pd.read_csv(pseudotime_summary).to_csv(output / "table_S9_pseudotime.csv", index=False)
     print(json.dumps({"all_run_rows": len(all_runs), "summary_rows": len(summary), "methods": len(method_rows)}, indent=2))
     return 0
 

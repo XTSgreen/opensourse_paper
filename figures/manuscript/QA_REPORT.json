@@ -38,6 +38,18 @@
       ],
       "width_mm": 183.0,
       "height_mm": 140.0
+    },
+    {
+      "figure": "FigureS_pseudotime",
+      "content_fits_canvas": true,
+      "bounds_inches": [
+        0.6611394163964798,
+        0.4215854082082514,
+        6.36346688281612,
+        5.424871284705134
+      ],
+      "width_mm": 183.0,
+      "height_mm": 150.0
     }
   ]
 }

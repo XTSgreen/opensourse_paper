@@ -1,0 +1,7 @@
+experiment,dataset,method,control,ordering
+E6_controls,synthetic_chain,soft_iot,random_root,0.2
+E6_controls,synthetic_chain,soft_iot,permuted_truth,0.2571428571428572
+E6_controls,gse228154,soft_iot,random_root,-0.1515151515151515
+E6_controls,gse228154,soft_iot,shuffled_target_labels,0.37131376455330706
+E6_controls,gse140802_t2_t16,uot_iot,random_root,0.4504426164614508
+E6_controls,gse140802_t2_t16,uot_iot,shuffled_coupling,0.6614378277661476

@@ -1,0 +1,26 @@
+{
+  "dataset": "GSE228154",
+  "purpose": "pseudotime evaluation on the frozen inverse-OT observation",
+  "sites": [
+    "D3",
+    "D6",
+    "D9"
+  ],
+  "feature_names": [
+    "similarity",
+    "proliferation_j",
+    "emt_j",
+    "stemness_j",
+    "senescence_j",
+    "epithelial_j",
+    "lr_crosstalk_ij",
+    "prolif_i_emt_j"
+  ],
+  "source_hashes": {
+    "output\\03_data_preparation\\output\\distributions.npz": "5bca33cc4b848e83079aff698cec26af0e5fd4ce6e2a7d6444b98c690d5ad4dd",
+    "output\\03_data_preparation\\output\\phi.npz": "c3427f907f7fc17c3feada6d358ea3dd39c48baf898aa1eaf609e79e0ed2bbad",
+    "output\\03_data_preparation\\output\\transition_ops.npz": "58e582476e2467b265c436a2617cc95d8a4a980e3421b826a8a2b90094b8c20d",
+    "output\\04_driver_inference\\drivers_uot.json": "286123d3220186df29903f7ce688628e00028b9d1d6e7ecd59d49bb03ff6965d"
+  },
+  "derived_file": "data/derived/pseudotime/gse228154_inverse_ot.npz"
+}
