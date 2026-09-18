@@ -1,17 +1,64 @@
 {
-  "figures": [
-    "Figure1",
-    "Figure2",
-    "Figure3",
-    "Figure4",
-    "Figure5"
+  "style_reference": "figures_revision_v5 + technical_route_v6",
+  "data_authority": "current benchmark results",
+  "historical_numeric_results_used_for_benchmark_panels": false,
+  "checks": [
+    {
+      "figure": "Figure1",
+      "editable_drawio": true,
+      "visual_template": "technical_route_v6",
+      "current_result_mini_panels": 10,
+      "unchanged_input_description_panels": 3
+    },
+    {
+      "figure": "Figure2",
+      "content_fits_canvas": true,
+      "bounds_inches": [
+        0.617580927384077,
+        0.237941103201451,
+        6.40702537182852,
+        5.530562833806424
+      ],
+      "width_mm": 183.0,
+      "height_mm": 148.0
+    },
+    {
+      "figure": "Figure3",
+      "content_fits_canvas": true,
+      "bounds_inches": [
+        1.0572401301399825,
+        0.21787401574803147,
+        5.9673661690726165,
+        5.979370078740157
+      ],
+      "width_mm": 183.0,
+      "height_mm": 159.0
+    },
+    {
+      "figure": "Figure4",
+      "content_fits_canvas": true,
+      "bounds_inches": [
+        0.469628171478565,
+        0.3103674540682415,
+        6.554978127734034,
+        7.290026246719162
+      ],
+      "width_mm": 183.0,
+      "height_mm": 195.0
+    },
+    {
+      "figure": "Figure5",
+      "content_fits_canvas": true,
+      "bounds_inches": [
+        1.0572401301399825,
+        0.06522283807874601,
+        5.986807545634945,
+        6.132021256409442
+      ],
+      "width_mm": 183.0,
+      "height_mm": 159.0
+    }
   ],
-  "vector_pdf": true,
-  "png_dpi": 300,
-  "width_mm": 183,
-  "source_files": 20,
-  "asset_mode": "parameter inheritance",
-  "target": "Nature-family standard",
-  "source_manifest_output_paths_exist": true,
-  "missing_manifest_outputs": []
+  "cross_entropy_floor": 1e-12,
+  "statistics_document": "figures/CURRENT_FIGURE_NOTES.md"
 }

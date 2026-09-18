@@ -1,0 +1,4 @@
+statistic,value,inference
+direction_cosine_TENA_vs_Cdh,-0.7962315468516161,descriptive_only
+TENA_history_label_OOF_permutation_p,0.012987012987012988,1000 full-pipeline label permutations; one-sided
+Cdh_history_label_OOF_permutation_p,0.029970029970029972,1000 full-pipeline label permutations; one-sided

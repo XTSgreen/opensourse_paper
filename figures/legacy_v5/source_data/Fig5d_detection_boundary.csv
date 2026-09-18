@@ -1,0 +1,9 @@
+partition,metric,role,method,value
+development_outer_oof,Brier,PERSIST-IOT,PERSIST-IOT,0.050092494660085
+development_outer_oof,Brier,Best supervised,extra_trees,0.045277149520772
+development_outer_oof,AUPRC,PERSIST-IOT,PERSIST-IOT,0.7806524464438694
+development_outer_oof,AUPRC,Best supervised,random_forest,0.809823426221381
+locked_external_e1,Brier,PERSIST-IOT,PERSIST-IOT,0.0297555056253869
+locked_external_e1,Brier,Best supervised,hist_gradient_boosting,0.0310343873785891
+locked_external_e1,AUPRC,PERSIST-IOT,PERSIST-IOT,0.7155979268605477
+locked_external_e1,AUPRC,Best supervised,hist_gradient_boosting,0.7327494279065814
