@@ -1,0 +1,43 @@
+{
+  "style_reference": "figures_revision_v5 + technical_route_v6",
+  "data_authority": "current benchmark results and frozen biology source tables",
+  "legacy_numbers_used_for_benchmark_panels": false,
+  "checks": [
+    {
+      "figure": "Figure3",
+      "content_fits_canvas": true,
+      "bounds_inches": [
+        0.39758092738407697,
+        0.0487902565035823,
+        6.749147270506282,
+        7.35672155452004
+      ],
+      "width_mm": 183.0,
+      "height_mm": 190.0
+    },
+    {
+      "figure": "Figure4",
+      "content_fits_canvas": true,
+      "bounds_inches": [
+        0.5341022971302142,
+        0.32064618021380165,
+        6.4905040020823845,
+        3.4990388591562773
+      ],
+      "width_mm": 183.0,
+      "height_mm": 98.0
+    },
+    {
+      "figure": "Figure5",
+      "content_fits_canvas": true,
+      "bounds_inches": [
+        0.19939195100612422,
+        0.21592177076498176,
+        6.825214348206475,
+        5.240771142620845
+      ],
+      "width_mm": 183.0,
+      "height_mm": 140.0
+    }
+  ]
+}
